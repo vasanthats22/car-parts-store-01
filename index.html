@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Car Parts Store - Index</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: #0a0e1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            padding-top: 100px;
+        }
+
+        #header-placeholder { width: 100%; flex-shrink: 0; }
+        #footer-placeholder { width: 100%; flex-shrink: 0; margin-top: auto; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        section {
+            padding: 5rem 2rem;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .bg-light { background: #f8fafc; }
+        .bg-dark { background: #0a0e1a; color: white; }
+        .bg-dark .section-title { color: white; }
+        .bg-dark .section-badge { color: #ff8833; }
+
+        .section-badge {
+            display: inline-block;
+            color: #ff6b00;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #0a0e1a;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title span {
+            color: #ff6b00;
+            position: relative;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary, .btn-secondary {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            min-width: 160px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .btn-primary {
+            background: #ff6b00;
+            color: #0a0e1a !important;
+            border: 2px solid #ff6b00;
+        }
+
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: #ff8833;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            color: #0a0e1a !important;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.3);
+        }
+
+        .btn-primary:hover:before { width: 300px; height: 300px; }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ff6b00 !important;
+            border: 2px solid #ff6b00;
+        }
+
+        .btn-secondary:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: #ff6b00;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover {
+            color: white !important;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.2);
+        }
+
+        .btn-secondary:hover:before { width: 300px; height: 300px; }
+
+        .bg-dark .btn-primary {
+            background: #ff6b00;
+            color: #0a0e1a !important;
+            border-color: #ff6b00;
+        }
+
+        .bg-dark .btn-secondary {
+            color: #ff6b00 !important;
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .bg-dark .btn-secondary:hover {
+            color: #0a0e1a !important;
+            border-color: #ff6b00;
+        }
+
+        .bg-dark .btn-secondary:before { background: #ff6b00; }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, #0a0e1a 0%, #141e30 50%, #1a2a40 100%);
+            box-shadow: 0 4px 24px rgba(10, 14, 26, 0.4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+            border-bottom: 3px solid #ff6b00;
+        }
+
+        .header-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-area img {
+            height: 56px;
+            width: auto;
+        }
+
+        .logo-fallback {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: none;
+        }
+        .logo-fallback i {
+            color: #ff6b00;
+            margin-right: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-link {
+            background: transparent;
+            border: none;
+            padding: 8px 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #a8b8d0;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-family: inherit;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .nav-link i {
+            margin-right: 8px;
+            color: #ff6b00;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 107, 0, 0.15);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: #ff6b00;
+            color: #0a0e1a;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+        }
+
+        .nav-link.active i {
+            color: #0a0e1a;
+        }
+
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .action-link {
+            background: transparent;
+            border: 2px solid rgba(168, 184, 208, 0.15);
+            padding: 6px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+            text-decoration: none;
+            color: #a8b8d0;
+        }
+
+        .action-link:hover {
+            background: rgba(255, 107, 0, 0.15);
+            color: #ffffff;
+            border-color: #ff6b00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.15);
+        }
+
+        .action-link.login-link {
+            background: #ff6b00;
+            color: #0a0e1a;
+            border-color: #ff6b00;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.2);
+        }
+
+        .action-link.login-link:hover {
+            background: #ff8833;
+            color: #0a0e1a;
+            border-color: #ff8833;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.35);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 8px;
+            background: transparent;
+            border: none;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: #a8b8d0;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover span {
+            background: #ff6b00;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+            background: #ff6b00;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+            background: #ff6b00;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100vh;
+            background: linear-gradient(180deg, #0a0e1a 0%, #141e30 50%, #1a2a40 100%);
+            z-index: 999;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            padding-top: 100px;
+            border-left: 3px solid #ff6b00;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            padding: 20px 30px;
+            gap: 4px;
+        }
+
+        .mobile-nav-link {
+            background: none;
+            border: none;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #a8b8d0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-radius: 12px;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .mobile-nav-link i {
+            width: 30px;
+            color: #ff6b00;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .mobile-nav-link:hover {
+            color: #ffffff;
+            background: rgba(255, 107, 0, 0.15);
+            transform: translateX(8px);
+        }
+
+        .mobile-nav-link:hover i {
+            color: #ff8833;
+            transform: scale(1.1);
+        }
+
+        .mobile-nav-link.active {
+            color: #ffffff;
+            background: rgba(255, 107, 0, 0.2);
+        }
+
+        .mobile-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 20px 30px;
+            margin-top: 10px;
+            border-top: 1px solid rgba(255, 107, 0, 0.2);
+        }
+
+        .mobile-action-link {
+            background: transparent;
+            border: 2px solid rgba(255, 107, 0, 0.3);
+            padding: 14px 0;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #a8b8d0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .mobile-action-link i {
+            color: #ff6b00;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .mobile-action-link:hover {
+            border-color: #ff6b00;
+            color: #ffffff;
+            background: rgba(255, 107, 0, 0.1);
+            transform: translateX(4px);
+        }
+
+        .mobile-action-link.login-mobile {
+            background: #ff6b00;
+            border-color: #ff6b00;
+            color: #0a0e1a;
+            font-weight: 700;
+        }
+
+        .mobile-action-link.login-mobile i {
+            color: #0a0e1a;
+        }
+
+        .mobile-action-link.login-mobile:hover {
+            background: #ff8833;
+            border-color: #ff8833;
+            color: #0a0e1a;
+        }
+
+        @media (max-width: 1100px) {
+            body { padding-top: 160px; }
+            .header-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .logo-area { justify-content: center; }
+            .nav-links { justify-content: center; }
+            .right-actions { justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding-top: 180px; }
+            .nav-links { display: none; }
+            .right-actions { display: none; }
+            .hamburger { display: flex; }
+            .logo-area img { height: 45px; }
+            .mobile-menu { padding-top: 85px; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding-top: 200px; }
+            .header-container { padding: 8px 12px; }
+            .logo-area img { height: 40px; }
+            .mobile-menu { padding-top: 75px; width: 100%; max-width: 100%; }
+        }
+
+        /* ===== HERO SLIDER ===== */
+        .hero-slider {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            max-height: 1200px;
+            overflow: hidden;
+            color: white;
+            width: 100%;
+        }
+
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .slide-bg.active { opacity: 1; }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.85) 0%, rgba(10, 14, 26, 0.6) 100%);
+            z-index: 2;
+        }
+
+        .hero-content-slider {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .hero-content-slider > div {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .hero-content-slider h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            line-height: 1.2;
+        }
+
+        .hero-content-slider h1 span { color: #ff6b00; }
+
+        .hero-content-slider p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            max-width: 800px;
+            width: 90%;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            line-height: 1.6;
+            color: #c8d0dc;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .dot.active {
+            background: #ff6b00;
+            transform: scale(1.2);
+            border-color: white;
+            box-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+        }
+
+        .dot:hover {
+            background: #ff6b00;
+            transform: scale(1.1);
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: #f8fafc;
+            padding: 6rem 2rem 2.5rem;
+            border-bottom: 1px solid #e2eae2;
+        }
+
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ff6b00;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-item p {
+            color: #6a7a8a;
+            font-weight: 500;
+        }
+
+        /* ===== FEATURE CARDS ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            border: 1px solid #e2eae2;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 107, 0, 0.15);
+            border-color: #ff6b00;
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .feature-card:hover img { transform: scale(1.1); }
+
+        .feature-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-content i {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover i { transform: scale(1.2); }
+
+        .feature-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #0a0e1a;
+        }
+
+        .feature-content p {
+            color: #6a7a8a;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .feature-content .btn-secondary { align-self: flex-start; margin: 0; }
+
+        /* ===== SPLIT BANNER ===== */
+        .split-banner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #ffffff;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+        }
+
+        .split-banner .split-image {
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .split-banner .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+
+        .split-banner:hover .split-image img { transform: scale(1.05); }
+
+        .split-banner .split-content {
+            padding: 44px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+        }
+
+        .split-banner .split-content .tag { color: #ff6b00; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .split-banner .split-content h2 { font-size: 1.8rem; font-weight: 800; color: #0a0e1a; margin: 8px 0; }
+        .split-banner .split-content h2 span { color: #ff6b00; }
+        .split-banner .split-content p { color: #6a7a8a; font-size: 0.95rem; line-height: 1.7; }
+
+        /* ===== BENEFITS ===== */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .benefits-list { list-style: none; }
+
+        .benefits-list li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+            color: white;
+        }
+
+        .benefits-list li:hover {
+            transform: translateX(15px) scale(1.02);
+            color: #ff8833;
+        }
+
+        .benefits-list i {
+            color: #ff6b00;
+            margin-right: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .benefits-list li:hover i { transform: rotate(360deg); }
+
+        /* ===== PROCESS STEPS ===== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-item {
+            text-align: center;
+            transition: all 0.4s ease;
+            padding: 2rem;
+            border-radius: 20px;
+            background: #ffffff;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+        }
+
+        .step-item:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255, 107, 0, 0.12);
+            border-color: #ff6b00;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ff6b00;
+            opacity: 0.3;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover .step-number {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .step-item h4 { font-size: 1.2rem; margin-bottom: 0.5rem; color: #0a0e1a; }
+        .step-item p { color: #6a7a8a; }
+
+        /* ===== CHOOSE CARDS ===== */
+        .choose-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .choose-card {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 107, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .choose-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(255, 107, 0, 0.15);
+            border-color: #ff6b00;
+        }
+
+        .choose-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; color: #0a0e1a; }
+        .choose-card p { color: #6a7a8a; margin-bottom: 1.2rem; flex: 1; }
+        .choose-card .btn-secondary { align-self: flex-start; min-width: 140px; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            background: #0a0e1a;
+            color: white;
+        }
+
+        .testimonials .section-title { color: white; }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: #141e30;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 107, 0, 0.15);
+            transition: all 0.4s ease;
+            color: white;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            border-color: #ff6b00;
+        }
+
+        .stars { color: #f5a623; margin-bottom: 1rem; font-size: 1.2rem; }
+        .testimonial-card p { color: #c8d0dc; font-style: italic; }
+        .testimonial-card strong { color: #ff6b00; }
+
+        /* ===== VIDEO SECTION ===== */
+        .video-section {
+            background: #0a0e1a;
+            border-radius: 24px;
+            padding: 30px 40px;
+            border: 1px solid rgba(255, 107, 0, 0.1);
+        }
+
+        .video-section .section-title h2 { color: #ffffff; }
+        .video-section .section-title p { color: #a8b8d0; }
+
+        .video-container {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            max-height: 400px;
+        }
+
+        .video-container video {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .video-container .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            transition: 0.4s;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .video-container .play-overlay:hover { background: rgba(0, 0, 0, 0.2); }
+
+        .video-container .play-overlay .play-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #ff6b00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #0a0e1a;
+            transition: 0.3s;
+        }
+
+        .video-container .play-overlay .play-btn:hover { transform: scale(1.1); }
+
+        /* ===== BLOG ===== */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .blog-card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #e2eae2;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(255, 107, 0, 0.12);
+            border-color: #ff6b00;
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .blog-card:hover img { transform: scale(1.1); }
+
+        .blog-content { padding: 2rem; }
+        .blog-content .category { color: #ff6b00; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .blog-content h3 { font-size: 1.2rem; margin-bottom: 0.8rem; color: #0a0e1a; }
+        .blog-content p { color: #6a7a8a; margin-bottom: 1rem; font-size: 0.95rem; }
+
+        /* ===== FAQ ===== */
+        .faq-section { background: #f8fafc; }
+        .faq-grid {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            border-bottom: 2px solid #ff6b00;
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+            background: #ffffff;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .faq-item:hover {
+            transform: translateX(10px);
+            background: #f0f8f0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 700;
+            color: #0a0e1a;
+            font-size: 1.1rem;
+        }
+
+        .faq-question i {
+            color: #ff6b00;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item:hover .faq-question i { transform: rotate(90deg); }
+
+        .faq-answer {
+            margin-top: 1rem;
+            color: #6a7a8a;
+            display: none;
+            padding-right: 2rem;
+        }
+
+        .faq-item.active .faq-answer { display: block; }
+
+        /* ===== CUSTOMER SUCCESS ===== */
+        .success-section {
+            background: linear-gradient(rgba(10, 14, 26, 0.85), rgba(10, 14, 26, 0.7)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .success-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 2rem;
+        }
+
+        .success-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 24px 28px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: 0.4s;
+        }
+
+        .success-card:hover {
+            transform: translateY(-8px);
+            border-color: #ff6b00;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .success-card .highlight {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ff6b00;
+        }
+
+        .success-card h4 {
+            font-size: 1.1rem;
+            color: white;
+            margin: 6px 0;
+        }
+
+        .success-card p {
+            color: #c8d0dc;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .success-card .btn-primary {
+            margin-top: 12px;
+            padding: 0.6rem 1.8rem;
+            font-size: 0.85rem;
+            min-width: 120px;
+        }
+
+        /* ===== ENVIRONMENT ===== */
+        .environment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .environment-stats {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .env-stat {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 16px;
+            flex: 1;
+            min-width: 140px;
+            border-left: 4px solid #ff6b00;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .env-stat h4 { font-size: 2rem; color: #ff6b00; margin-bottom: 0.3rem; }
+
+        .content-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.6s ease;
+        }
+
+        .content-image:hover { transform: scale(1.02) rotate(1deg); }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter-section {
+            background: #0a0e1a;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            border: 1px solid rgba(255, 107, 0, 0.15);
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.1);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.05);
+            color: white;
+        }
+
+        .newsletter-input:focus {
+            transform: scale(1.02);
+            border-color: #ff6b00;
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
+        }
+
+        .newsletter-input::placeholder { color: #6a7a8a; }
+
+        .newsletter-btn {
+            background: #ff6b00;
+            color: #0a0e1a;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-btn:hover {
+            background: #ff8833;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.3);
+        }
+
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            background: linear-gradient(135deg, #0a0e1a, #1a2a40);
+            color: white;
+            border: 1px solid rgba(255, 107, 0, 0.15);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-slider { min-height: 550px; height: 85vh; }
+            .hero-content-slider { padding: 5rem 1.5rem 2rem; }
+            .section-title { font-size: 2.4rem; }
+            .features-grid, .steps-grid, .testimonials-grid, .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .success-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 900px) {
+            .hero-content-slider h1 { font-size: 2.5rem; }
+            .benefits-grid, .environment-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .features-grid, .steps-grid, .testimonials-grid, .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            .choose-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2rem; }
+            .button-group { flex-direction: column; align-items: center; }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                margin: 0.5rem auto;
+            }
+            .container { padding: 0 1rem; }
+            section { padding: 3rem 1rem; }
+            .split-banner { grid-template-columns: 1fr; }
+            .environment-stats { justify-content: center; }
+            .env-stat { text-align: center; }
+            .success-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-slider { min-height: 500px; height: 80vh; }
+            .hero-content-slider { padding: 10rem 1.2rem 2rem; }
+            .hero-content-slider h1 { font-size: 2.2rem; }
+            .hero-content-slider p { font-size: 1rem; width: 95%; }
+            .stats-bar { padding: 8rem 1.2rem 2.5rem; }
+            .button-group { gap: 0.8rem; }
+            .stats-grid { flex-direction: column; gap: 1.5rem; }
+            .video-section { padding: 20px; }
+            .video-container { max-height: 300px; }
+            .video-container video { max-height: 300px; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content-slider { padding: 12rem 1rem 2rem; }
+            .hero-content-slider h1 { font-size: 2rem; }
+            .hero-content-slider p { font-size: 1rem; }
+            .stats-bar { padding: 10rem 1rem 2.5rem; }
+            .stats-grid { gap: 1.5rem; }
+            .stat-item h3 { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .btn-primary, .btn-secondary { max-width: 250px; padding: 0.8rem 1.5rem; font-size: 0.95rem; }
+            .video-container { max-height: 250px; }
+            .video-container video { max-height: 250px; }
+            .video-container .play-overlay .play-btn { width: 55px; height: 55px; font-size: 1.4rem; }
+            .success-card { padding: 18px 20px; }
+            .success-card .highlight { font-size: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content-slider { padding: 14rem 0.8rem 2rem; }
+            .hero-content-slider h1 { font-size: 1.8rem; }
+            .stats-bar { padding: 12rem 0.8rem 2rem; }
+            .stat-item h3 { font-size: 1.8rem; }
+            .btn-primary, .btn-secondary { min-width: 120px; padding: 0.8rem 1.2rem; font-size: 0.9rem; }
+            .split-banner .split-image { height: 200px; }
+            .video-container { max-height: 200px; }
+            .video-container video { max-height: 200px; }
+            .video-container .play-overlay .play-btn { width: 45px; height: 45px; font-size: 1.2rem; }
+            .success-card .highlight { font-size: 1.6rem; }
+        }
+
+        @media (min-width: 1400px) {
+            .hero-slider { max-height: 1000px; }
+            .hero-content-slider h1 { font-size: 4.5rem; }
+            .hero-content-slider p { font-size: 1.4rem; max-width: 900px; }
+        }
+
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero-slider { min-height: 350px; height: 100vh; }
+            .hero-content-slider { padding: 3rem 2rem 1rem; }
+            .hero-content-slider h1 { font-size: 1.8rem; margin-bottom: 0.8rem; }
+            .hero-content-slider p { font-size: 0.9rem; margin-bottom: 1rem; }
+            .btn-primary, .btn-secondary { padding: 0.5rem 1.2rem; }
+            .slider-dots { bottom: 10px; }
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f0f2f5; }
+        ::-webkit-scrollbar-thumb { background: #ff6b00; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e05a00; }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <div id="header-placeholder"></div>
+
+    <!-- ===== SECTION 1: HERO SLIDER ===== -->
+    <section class="hero-slider">
+        <div class="slide-bg active" style="background-image: url('car5.webp');"></div>
+        <div class="slide-bg" style="background-image: url('car6.webp');"></div>
+        <div class="slide-bg" style="background-image: url('car8.webp');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content-slider">
+            <div>
+                <h1 data-aos="fade-down" data-aos-duration="1200">Premium Auto Parts<br>for <span>Every Vehicle</span></h1>
+                <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">CarParts Store brings you high-quality engines, brakes, exterior parts, and accessories. Trusted by 50,000+ drivers worldwide.</p>
+                <div class="button-group" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="400">
+                    <a href="404.html" class="btn-primary">Shop Now</a>
+                    <a href="404.html" class="btn-secondary">Explore Parts</a>
+                </div>
+            </div>
+        </div>
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 2: STATS BAR ===== -->
+    <section class="stats-bar">
+        <div class="container">
+            <span class="section-badge" data-aos="fade-right">TRUSTED WORLDWIDE</span>
+            <h2 class="section-title" data-aos="fade-left" data-aos-delay="100">Leading the <span>Auto Parts</span> Industry</h2>
+            <div class="stats-grid">
+                <div class="stat-item" data-aos="flip-left" data-aos-duration="1200">
+                    <h3>50K+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-item" data-aos="flip-right" data-aos-duration="1200" data-aos-delay="200">
+                    <h3>10K+</h3>
+                    <p>Parts Available</p>
+                </div>
+                <div class="stat-item" data-aos="flip-up" data-aos-duration="1200" data-aos-delay="400">
+                    <h3>99%</h3>
+                    <p>Satisfaction Rate</p>
+                </div>
+            </div>
+            <div class="button-group" data-aos="fade-up" data-aos-delay="500">
+                <a href="404.html" class="btn-primary">View All Parts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 3: FEATURE CARDS ===== -->
+    <section class="bg-light">
+        <div class="container">
+            <span class="section-badge" data-aos="fade-right">CORE FEATURES</span>
+            <h2 class="section-title" data-aos="fade-left" data-aos-delay="100">Everything You Need in <span>One Place</span></h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-right" data-aos-duration="1200">
+                    <img src="car1.webp" alt="Engines">
+                    <div class="feature-content">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Premium Engines</h3>
+                        <p>High-performance engines with OEM quality, from V8 powerhouses to efficient 4-cylinder options.</p>
+                        <a href="404.html" class="btn-secondary">Learn More →</a>
+                    </div>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                    <img src="car2.webp" alt="Brakes">
+                    <div class="feature-content">
+                        <i class="fas fa-stop-circle"></i>
+                        <h3>Advanced Brake Systems</h3>
+                        <p>Premium brake systems with superior stopping power, designed for safety and performance in all conditions.</p>
+                        <a href="404.html" class="btn-secondary">Learn More →</a>
+                    </div>
+                </div>
+                <div class="feature-card" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="400">
+                    <img src="car3.webp" alt="Exterior">
+                    <div class="feature-content">
+                        <i class="fas fa-car"></i>
+                        <h3>Exterior Accessories</h3>
+                        <p>Transform your vehicle's appearance with premium exterior parts including headlights, body kits, and wheels.</p>
+                        <a href="404.html" class="btn-secondary">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 4: SPLIT BANNER ===== -->
+    <section>
+        <div class="container">
+            <div class="split-banner" data-aos="fade-up">
+                <div class="split-image">
+                    <img src="car4.webp" alt="Engine Parts">
+                </div>
+                <div class="split-content">
+                    <div class="tag">Performance</div>
+                    <h2>Power Your <span>Vehicle</span></h2>
+                    <p>From high-performance engines to precision brake systems, we bring you the finest quality parts from trusted manufacturers worldwide.</p>
+                    <br>
+                    <a href="404.html" class="btn-primary" style="align-self:flex-start;"><i class="fas fa-arrow-right"></i> Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 5: BENEFITS ===== -->
+    <section class="bg-dark">
+        <div class="container">
+            <span class="section-badge" style="color:#ff8833;" data-aos="fade-right">ACCELERATED PERFORMANCE</span>
+            <h2 class="section-title" data-aos="fade-left" data-aos-delay="100">Upgrade Your <span style="color:#ff6b00;">Vehicle</span> Today</h2>
+            <div class="benefits-grid">
+                <div data-aos="fade-right" data-aos-duration="1200">
+                    <p style="color:#c8d0dc;">Our premium parts help you get better performance, safety, and reliability from your vehicle.</p>
+                    <ul class="benefits-list">
+                        <li><i class="fas fa-check-circle"></i> OEM-Quality Parts</li>
+                        <li><i class="fas fa-check-circle"></i> Expert Installation Guides</li>
+                        <li><i class="fas fa-check-circle"></i> Performance Verified</li>
+                        <li><i class="fas fa-check-circle"></i> 2-Year Warranty</li>
+                    </ul>
+                    <a href="404.html" class="btn-primary">Learn More</a>
+                </div>
+                <div data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+                    <img src="car5.webp" alt="Engine Upgrade" style="width:100%; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.3);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 6: PROCESS STEPS ===== -->
+    <section class="bg-light">
+        <div class="container">
+            <span class="section-badge" data-aos="fade-right">WORKING PROCESS</span>
+            <h2 class="section-title" data-aos="fade-left" data-aos-delay="100">Three Simple Steps to <span>Upgrade</span></h2>
+            <div class="steps-grid">
+                <div class="step-item" data-aos="flip-left" data-aos-duration="1200">
+                    <div class="step-number">01</div>
+                    <h4>Find Your Part</h4>
+                    <p>Browse our catalog or use our smart matching tool to find the perfect part for your vehicle.</p>
+                    <a href="404.html" class="btn-secondary">Get Started →</a>
+                </div>
+                <div class="step-item" data-aos="flip-up" data-aos-duration="1200" data-aos-delay="200">
+                    <div class="step-number">02</div>
+                    <h4>Order & Install</h4>
+                    <p>Order your parts with fast shipping and follow our installation guides for a perfect fit.</p>
+                    <a href="404.html" class="btn-secondary">Get Started →</a>
+                </div>
+                <div class="step-item" data-aos="flip-right" data-aos-duration="1200" data-aos-delay="400">
+                    <div class="step-number">03</div>
+                    <h4>Drive With Confidence</h4>
+                    <p>Experience the difference in performance, safety, and reliability with premium auto parts.</p>
+                    <a href="404.html" class="btn-secondary">Get Started →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 7: WHY CHOOSE US ===== -->
+    <section class="bg-dark">
+        <div class="container">
+            <span class="section-badge" style="color:#ff8833;" data-aos="fade-right">WHY CHOOSE US</span>
+            <h2 class="section-title" data-aos="fade-left" data-aos-delay="100">The Driver's Choice for <br><span style="color:#ff6b00;">Quality Parts</span></h2>
+            <div class="choose-grid">
+                <div class="choose-card" data-aos="fade-right" data-aos-duration="1200">
+                    <h3>⚡ Premium Quality</h3>
+                    <p>All parts meet or exceed OEM standards with rigorous testing and quality control. Every part is backed by our satisfaction guarantee.</p>
+                    <a href="404.html" class="btn-secondary">Learn More</a>
+                </div>
+                <div class="choose-card" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+                    <h3>💰 Best Value</h3>
+                    <p>Get premium quality at competitive prices with fast shipping and excellent customer support. No hidden fees or surprises.</p>
+                    <a href="404.html" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="button-group" style="margin-top:2rem;" data-aos="zoom-in" data-aos-delay="300">
+                <a href="404.html" class="btn-primary">Shop Now</a>
+                <span style="color:white; font-weight:500; display:inline-block; margin:0.5rem;"><i class="fas fa-phone-alt" style="color:#ff6b00;"></i> +1 (555) 123-4567</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 8: TESTIMONIALS ===== -->
+    <section class="testimonials">
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; flex-wrap:wrap;">
+                <div>
+                    <span class="section-badge" style="color:#ff8833;" data-aos="fade-right">CUSTOMER STORIES</span>
+                    <h2 class="section-title" data-aos="fade-left" data-aos-delay="100">What Drivers Say <span style="color:#ff6b00;">About Us</span></h2>
+                </div>
+                <a href="404.html" class="btn-secondary" style="color:white; border-color:rgba(255,255,255,0.3);" data-aos="fade-left" data-aos-delay="200">Browse All →</a>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-right" data-aos-duration="1200">
+                    <div class="stars">★★★★★ (12)</div>
+                    <p>"The V8 engine kit transformed my car. Unbelievable power and the sound is incredible."</p>
+                    <div style="margin-top:1.5rem;"><strong>James Wilson</strong>, Car Enthusiast</div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                    <div class="stars">★★★★★ (8)</div>
+                    <p>"The carbon ceramic brakes are amazing. Stopping distance improved dramatically."</p>
+                    <div style="margin-top:1.5rem;"><strong>Emma Davis</strong>, Daily Driver</div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="400">
+                    <div class="stars">★★★★★ (15)</div>
+                    <p>"Best auto parts store I've used. Quality products, fast shipping, and great support."</p>
+                    <div style="margin-top:1.5rem;"><strong>Robert Martinez</strong>, Mechanic</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 9: VIDEO SHOWCASE ===== -->
+    <section>
+        <div class="container">
+            <div class="video-section" data-aos="fade-up">
+                <div class="section-title">
+                    <div class="section-badge" style="color:#ff8833;">Watch</div>
+                    <h2>Parts in <span>Action</span></h2>
+                    <p>See our premium parts performing in real-world conditions</p>
+                </div>
+                <div class="video-container">
+                    <video id="demoVideo" poster="car6.webp">
+                        <source src="cpsv1.mp4" type="video/mp4">
+                    </video>
+                    <div class="play-overlay" id="playOverlay" onclick="toggleVideo()">
+                        <div class="play-btn" id="playBtn"><i class="fas fa-play"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 10: BLOG ===== -->
+    <section class="bg-light">
+        <div class="container">
+            <span class="section-badge" data-aos="fade-right">INSIGHTS</span>
+            <h2 class="section-title" data-aos="fade-left" data-aos-delay="100">Latest in <span>Auto Parts</span> Technology</h2>
+            <div class="blog-grid">
+                <div class="blog-card" data-aos="fade-right" data-aos-duration="1200">
+                    <img src="car7.webp" alt="Engine Tech">
+                    <div class="blog-content">
+                        <div class="category">TECHNOLOGY</div>
+                        <h3>Why Performance Engines Are Better Than Ever</h3>
+                        <p>Modern engineering and materials have made performance engines more reliable and powerful.</p>
+                        <a href="404.html">Read Article →</a>
+                    </div>
+                </div>
+                <div class="blog-card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                    <img src="car8.webp" alt="Brake Tech">
+                    <div class="blog-content">
+                        <div class="category">SAFETY</div>
+                        <h3>How Ceramic Brakes Improve Your Safety</h3>
+                        <p>Ceramic brake systems offer superior performance, durability, and reduced stopping distances.</p>
+                        <a href="404.html">Read Article →</a>
+                    </div>
+                </div>
+                <div class="blog-card" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="400">
+                    <img src="car9.webp" alt="Exterior Tech">
+                    <div class="blog-content">
+                        <div class="category">EXTERIOR</div>
+                        <h3>LED Technology: The Future of Auto Lighting</h3>
+                        <p>LED headlights and lighting systems offer better visibility, efficiency, and style.</p>
+                        <a href="404.html">Read Article →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="button-group" data-aos="fade-up" data-aos-delay="500">
+                <a href="404.html" class="btn-secondary">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 11: FAQ ===== -->
+    <section class="faq-section">
+        <div class="container">
+            <span class="section-badge" data-aos="fade-right">FAQ</span>
+            <h2 class="section-title" data-aos="fade-left" data-aos-delay="100">Common Questions About <span>CarParts</span> Store</h2>
+            <div class="faq-grid">
+                <div class="faq-item active" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question">
+                        How long does shipping take?
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Standard shipping takes 3-5 business days. Express shipping is available for 1-2 business day delivery.
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-question">
+                        What is your return policy?
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We offer a 30-day return policy on all unused parts in original packaging. Some items may have specific return conditions.
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="faq-question">
+                        Do you offer warranty on parts?
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! All parts come with a manufacturer's warranty. The warranty period varies by product and brand.
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="faq-question">
+                        How do I find the right part for my car?
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Use our part finder tool by entering your vehicle's make, model, and year. You can also search by part number or browse by category.
+                    </div>
+                </div>
+            </div>
+            <div class="button-group" style="margin-top:2rem;" data-aos="fade-up" data-aos-delay="600">
+                <a href="404.html" class="btn-secondary">View All FAQs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 12: CUSTOMER SUCCESS ===== -->
+    <section class="success-section">
+        <div class="container">
+            <span class="section-badge" style="color:#ff8833;" data-aos="fade-right">CUSTOMER SUCCESS</span>
+            <h2 class="section-title" style="color:white;" data-aos="fade-left" data-aos-delay="100">How Our Customers <span style="color:#ff6b00;">Upgraded</span> Their Vehicles</h2>
+            <div class="success-grid">
+                <div class="success-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="highlight">60%</div>
+                    <h4>Power Increase</h4>
+                    <p>V8 performance engine kit delivered incredible throttle response and power gains for a Mustang GT owner.</p>
+                    <p style="font-style:italic; color:#a8b8d0; margin-top:6px;">— Mike Johnson, Mustang Owner</p>
+                    <a href="404.html" class="btn-primary">Read Case Study</a>
+                </div>
+                <div class="success-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="highlight">40%</div>
+                    <h4>Stopping Distance Reduced</h4>
+                    <p>Carbon ceramic brake system improved safety and performance with significantly shorter stopping distances.</p>
+                    <p style="font-style:italic; color:#a8b8d0; margin-top:6px;">— Sarah Chen, BMW Owner</p>
+                    <a href="404.html" class="btn-primary">Read Case Study</a>
+                </div>
+                <div class="success-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="highlight">30%</div>
+                    <h4>Fuel Efficiency Boost</h4>
+                    <p>Performance upgrades combined with proper tuning resulted in improved fuel economy and smoother driving.</p>
+                    <p style="font-style:italic; color:#a8b8d0; margin-top:6px;">— David Park, Truck Owner</p>
+                    <a href="404.html" class="btn-primary">Read Case Study</a>
+                </div>
+                <div class="success-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="highlight">50%</div>
+                    <h4>Reduced Maintenance</h4>
+                    <p>Premium quality parts with proper maintenance reduced repair frequency and overall vehicle downtime.</p>
+                    <p style="font-style:italic; color:#a8b8d0; margin-top:6px;">— Lisa Martinez, Fleet Manager</p>
+                    <a href="404.html" class="btn-primary">Read Case Study</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 13: ENVIRONMENT ===== -->
+    <section class="bg-light">
+        <div class="container">
+            <span class="section-badge" data-aos="fade-right">SUSTAINABILITY</span>
+            <h2 class="section-title" data-aos="fade-left" data-aos-delay="100">Parts for a <span>Greener</span> Future</h2>
+            <div class="environment-grid">
+                <div data-aos="fade-right" data-aos-duration="1200">
+                    <img src="car10.webp" alt="Sustainable Parts" class="content-image">
+                </div>
+                <div class="environment-content" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+                    <p style="font-size:1.2rem; margin-bottom:1.5rem;">We're committed to providing eco-friendly parts that reduce environmental impact while maintaining performance.</p>
+                    <div class="environment-stats">
+                        <div class="env-stat">
+                            <h4>-30%</h4>
+                            <p>Emissions reduction</p>
+                        </div>
+                        <div class="env-stat">
+                            <h4>85%</h4>
+                            <p>Recyclable materials</p>
+                        </div>
+                    </div>
+                    <a href="404.html" class="btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 14: NEWSLETTER ===== -->
+    <section class="newsletter-section">
+        <div class="container">
+            <h2 class="section-title" style="color:white;" data-aos="fade-right">Stay Updated with CarParts</h2>
+            <p style="font-size:1.1rem; max-width:600px; margin:0 auto; color:#a8b8d0;" data-aos="fade-left" data-aos-delay="100">Get auto parts deals, new arrivals, and car care tips.</p>
+            <form class="newsletter-form" action="404.html" method="GET" data-aos="zoom-in" data-aos-delay="200">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 15: FINAL CTA ===== -->
+    <section class="final-cta" style="padding:4rem 2rem; text-align:center; border-top:3px solid #ff6b00;">
+        <div class="container">
+            <h2 class="section-title" style="color:white;" data-aos="fade-right">Ready to Upgrade Your Vehicle?</h2>
+            <p style="font-size:1.2rem; max-width:600px; margin:0 auto 2rem; color:#a8b8d0;" data-aos="fade-left" data-aos-delay="100">Join 50,000+ drivers already using CarParts Store for premium auto parts.</p>
+            <div class="button-group" data-aos="zoom-in" data-aos-delay="200">
+                <a href="404.html" class="btn-primary" style="background:white; color:#0a0e1a;">Shop Now</a>
+                <a href="404.html" class="btn-secondary" style="color:white; border-color:rgba(255,255,255,0.3);">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- ===== AOS SCRIPTS ===== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+    <script>
+        // =========================================
+        // HEADER & FOOTER LOADER
+        // =========================================
+        (function loadHeaderFooter() {
+            fetch('header.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Header not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    initHeader();
+                })
+                .catch(error => {
+                    console.error('Error loading header:', error);
+                    document.getElementById('header-placeholder').innerHTML =
+                        '<div style="background:#0a0e1a; color:#ff6b00; padding:15px; text-align:center; font-weight:500; border-bottom:3px solid #ff6b00;">⚠️ Header failed to load</div>';
+                });
+
+            fetch('footer.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Footer not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                    initFooter();
+                })
+                .catch(error => {
+                    console.error('Error loading footer:', error);
+                    document.getElementById('footer-placeholder').innerHTML =
+                        '<div style="background:#0a0e1a; color:#a8b8d0; padding:20px; text-align:center; border-top:3px solid #ff6b00;">⚠️ Footer failed to load</div>';
+                });
+        })();
+
+        // =========================================
+        // HEADER INITIALIZATION
+        // =========================================
+        function initHeader() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+
+            if (hamburger && mobileMenu) {
+                function toggleMenu() {
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    if (mobileOverlay) mobileOverlay.classList.toggle('active');
+                    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+                }
+
+                function closeMenu() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    if (mobileOverlay) mobileOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+
+                hamburger.addEventListener('click', toggleMenu);
+
+                if (mobileOverlay) {
+                    mobileOverlay.addEventListener('click', closeMenu);
+                }
+
+                document.addEventListener('click', function(e) {
+                    if (mobileMenu.classList.contains('active')) {
+                        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                            closeMenu();
+                        }
+                    }
+                });
+
+                window.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') closeMenu();
+                });
+
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) closeMenu();
+                });
+
+                document.querySelectorAll('.mobile-nav-link, .mobile-action-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        closeMenu();
+                    });
+                });
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === 'index.html') {
+                    link.classList.add('active');
+                }
+            });
+
+            console.log('✅ Header initialized');
+        }
+
+        // =========================================
+        // FOOTER INITIALIZATION
+        // =========================================
+        function initFooter() {
+            console.log('✅ Footer initialized');
+        }
+
+        // =========================================
+        // HERO SLIDER
+        // =========================================
+        const slides = document.querySelectorAll('.slide-bg');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        window.currentSlide = showSlide;
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+
+        setInterval(() => {
+            let next = (currentSlide + 1) % slides.length;
+            showSlide(next);
+        }, 5000);
+
+        // =========================================
+        // VIDEO PLAY/PAUSE
+        // =========================================
+        const video = document.getElementById('demoVideo');
+        const overlay = document.getElementById('playOverlay');
+        const playBtn = document.getElementById('playBtn');
+
+        function toggleVideo() {
+            if (video.paused) {
+                video.play();
+                overlay.style.display = 'none';
+            } else {
+                video.pause();
+                overlay.style.display = 'flex';
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
+        video.addEventListener('ended', function() {
+            overlay.style.display = 'flex';
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        });
+
+        video.addEventListener('pause', function() {
+            overlay.style.display = 'flex';
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        });
+
+        // =========================================
+        // FAQ TOGGLE
+        // =========================================
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.closest('.faq-item');
+                item.classList.toggle('active');
+            });
+        });
+
+        // =========================================
+        // AOS INITIALIZATION
+        // =========================================
+        AOS.init({
+            duration: 1200,
+            once: false,
+            mirror: true,
+            anchorPlacement: 'top-bottom',
+            offset: 50,
+            easing: 'ease-out-cubic'
+        });
+
+        window.addEventListener('load', () => AOS.refresh());
+        window.addEventListener('resize', () => AOS.refresh());
+
+        console.log('🚗 CarParts Store | Complete Homepage Loaded');
+        console.log('🏎️ 15 sections with slider, video controls & full responsiveness!');
+    </script>
+
+</body>
+</html>

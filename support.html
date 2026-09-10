@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>Car Parts Store - Support</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 100px;
+        }
+
+        /* ===== HEADER PLACEHOLDER ===== */
+        #header-placeholder {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        /* ===== FOOTER PLACEHOLDER ===== */
+        #footer-placeholder {
+            width: 100%;
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.85), rgba(10, 14, 26, 0.7)), url('car1.webp');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 24px;
+            text-align: center;
+            border-radius: 0;
+            margin-bottom: 0;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content h1 span {
+            color: #ff6b00;
+        }
+
+        .hero-content p {
+            color: #c8d0dc;
+            font-size: 1.2rem;
+            margin-top: 16px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 107, 0, 0.2);
+            color: #ff6b00;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 107, 0, 0.3);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-wrapper {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+            width: 100%;
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0a0e1a;
+        }
+
+        .section-title h2 span {
+            color: #ff6b00;
+        }
+
+        .section-title p {
+            color: #6a7a8a;
+            font-size: 1rem;
+            margin-top: 8px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== SUPPORT GRID ===== */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .support-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(10, 14, 26, 0.04);
+        }
+
+        .support-card:hover {
+            transform: translateY(-8px);
+            border-color: #ff6b00;
+            box-shadow: 0 12px 35px rgba(255, 107, 0, 0.12);
+        }
+
+        .support-card .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.12), rgba(255, 107, 0, 0.04));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            font-size: 2rem;
+            color: #ff6b00;
+        }
+
+        .support-card .icon-wrapper img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .support-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0a0e1a;
+            margin-bottom: 8px;
+        }
+
+        .support-card p {
+            color: #6a7a8a;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        /* ===== ALL BUTTONS - SAME ORANGE COLOR ===== */
+        .support-btn {
+            background: #ff6b00;
+            border: 2px solid #ff6b00;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #0a0e1a;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .support-btn i {
+            color: #0a0e1a;
+            transition: 0.3s;
+        }
+
+        .support-btn:hover {
+            background: #ff8833;
+            border-color: #ff8833;
+            color: #0a0e1a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.3);
+        }
+
+        .support-btn:hover i {
+            color: #0a0e1a;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 50px 40px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-item .icon {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 12px;
+        }
+
+        .feature-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0a0e1a;
+        }
+
+        .feature-item p {
+            font-size: 0.8rem;
+            color: #6a7a8a;
+            margin-top: 4px;
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 50px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .faq-item {
+            padding: 18px 20px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            border-radius: 12px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .faq-item:hover {
+            border-color: #ff6b00;
+            background: rgba(255, 107, 0, 0.03);
+        }
+
+        .faq-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0a0e1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item h4 i {
+            color: #ff6b00;
+            font-size: 0.8rem;
+        }
+
+        .faq-item p {
+            color: #6a7a8a;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .faq-item.active p {
+            display: block;
+        }
+
+        .faq-item.active {
+            border-color: #ff6b00;
+        }
+
+        /* ===== CONTACT FORM SECTION ===== */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 50px;
+        }
+
+        .contact-info h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0a0e1a;
+            margin-bottom: 10px;
+        }
+
+        .contact-info h2 span {
+            color: #ff6b00;
+        }
+
+        .contact-info p {
+            color: #6a7a8a;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .contact-detail .icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 107, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff6b00;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-detail .text {
+            font-size: 0.9rem;
+            color: #0a0e1a;
+        }
+
+        .contact-detail .text small {
+            color: #6a7a8a;
+            font-size: 0.75rem;
+            display: block;
+        }
+
+        /* ===== BUG FIX: FORM FIELD WRAPPER ===== */
+        /* Each input + its error message are now wrapped in .form-field.
+           The margin-bottom is on the WRAPPER, not the input,
+           so the error always hugs its own input and never overlaps the next field. */
+        .contact-form .form-field {
+            width: 100%;
+            margin-bottom: 14px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            outline: none;
+            font-family: inherit;
+            background: #fafafa;
+            margin-bottom: 0;      /* ← moved to .form-field */
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #ff6b00;
+            box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.08);
+            background: #ffffff;
+        }
+
+        .contact-form input.error,
+        .contact-form textarea.error {
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 4px rgba(229, 62, 62, 0.08);
+        }
+
+        /* ===== BUG FIX: error message sits snug under its input, no negative margin ===== */
+        .contact-form .error-msg {
+            color: #e53e3e;
+            font-size: 0.7rem;
+            margin-top: 4px;       /* small gap above error */
+            margin-bottom: 0;      /* gap below is handled by .form-field */
+            display: none;
+        }
+
+        .contact-form .error-msg.show {
+            display: block;
+        }
+
+        /* ===== BUG FIX: textarea resize disabled ===== */
+        .contact-form textarea {
+            resize: none;          /* ← was "vertical", now users can't resize */
+            min-height: 120px;
+        }
+
+        .contact-form .submit-btn {
+            background: #ff6b00;
+            color: #0a0e1a;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-form .submit-btn:hover {
+            background: #ff8833;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 107, 0, 0.3);
+        }
+
+        .contact-form .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ===== MAP SECTION ===== */
+        .map-section {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 0;
+        }
+
+        .map-section iframe {
+            width: 100%;
+            height: 400px;
+            display: block;
+            border: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1100px) {
+            body {
+                padding-top: 160px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .support-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 180px;
+            }
+            .hero-section {
+                padding: 50px 20px;
+                min-height: 300px;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact-section {
+                padding: 24px;
+            }
+            .faq-section {
+                padding: 24px;
+            }
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            .map-section iframe {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 200px;
+            }
+            .main-wrapper {
+                padding: 20px 16px;
+            }
+            .hero-content h1 {
+                font-size: 1.6rem;
+            }
+            .hero-section {
+                padding: 40px 16px;
+                min-height: 250px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .support-card {
+                padding: 20px;
+            }
+            .support-card .icon-wrapper {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            .support-card .icon-wrapper img {
+                width: 40px;
+                height: 40px;
+            }
+            .section-title h2 {
+                font-size: 1.4rem;
+            }
+            .map-section iframe {
+                height: 250px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0f2f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff6b00;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e05a00;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER PLACEHOLDER ===== -->
+    <div id="header-placeholder"></div>
+
+    <!-- ===== SECTION 1: HERO ===== -->
+    <section class="hero-section" data-aos="fade-in" data-aos-duration="1000">
+        <div class="hero-content">
+            <div class="hero-badge" data-aos="fade-down" data-aos-delay="200">
+                <i class="fas fa-headset"></i> 24/7 Support Available
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="300">How Can We <span>Help You?</span></h1>
+            <p data-aos="fade-up" data-aos-delay="400">We're here to assist you with any questions about our parts, orders, or services. Your satisfaction is our priority.</p>
+        </div>
+    </section>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <div class="main-wrapper">
+
+        <!-- ===== SECTION 2: SUPPORT OPTIONS ===== -->
+        <div class="section-title" data-aos="fade-up">
+            <h2>Support <span>Options</span></h2>
+            <p>Choose the support channel that works best for you</p>
+        </div>
+
+        <div class="support-grid">
+            <div class="support-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon-wrapper">
+                    <img src="car2.webp" alt="Live Chat" />
+                </div>
+                <h3>24/7 Live Chat</h3>
+                <p>Chat with our support team anytime. We're always here to help you.</p>
+                <a href="404.html" class="support-btn"><i class="fas fa-comment"></i> Start Chat</a>
+            </div>
+
+            <div class="support-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-wrapper">
+                    <img src="cps1.webp" alt="Email Support" />
+                </div>
+                <h3>Email Support</h3>
+                <p>Send us an email and we'll get back to you within 24 hours.</p>
+                <a href="404.html" class="support-btn"><i class="fas fa-paper-plane"></i> Send Email</a>
+            </div>
+
+            <div class="support-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-wrapper">
+                    <img src="cps2.webp" alt="Call Us" />
+                </div>
+                <h3>Call Us</h3>
+                <p>Speak directly with our support team during business hours.</p>
+                <a href="404.html" class="support-btn"><i class="fas fa-phone"></i> Call Now</a>
+            </div>
+
+            <div class="support-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="icon-wrapper">
+                    <img src="cps3.webp" alt="Knowledge Base" />
+                </div>
+                <h3>Knowledge Base</h3>
+                <p>Browse our comprehensive guides and FAQs for quick answers.</p>
+                <a href="404.html" class="support-btn"><i class="fas fa-search"></i> Browse Guides</a>
+            </div>
+
+            <div class="support-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="icon-wrapper">
+                    <img src="cps4.webp" alt="Installation Help" />
+                </div>
+                <h3>Part Installation</h3>
+                <p>Get help with part installation and compatibility questions.</p>
+                <a href="404.html" class="support-btn"><i class="fas fa-wrench"></i> Get Help</a>
+            </div>
+
+            <div class="support-card" data-aos="fade-up" data-aos-delay="350">
+                <div class="icon-wrapper">
+                    <img src="cps5.webp" alt="Returns & Warranty" />
+                </div>
+                <h3>Returns & Warranty</h3>
+                <p>Learn about our return policy and warranty coverage.</p>
+                <a href="404.html" class="support-btn"><i class="fas fa-file-alt"></i> View Policy</a>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 3: FEATURES ===== -->
+        <div class="features-section" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Why Choose <span>Us</span></h2>
+                <p>We're committed to providing the best support experience</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="icon"><i class="fas fa-clock"></i></div>
+                    <h4>24/7 Availability</h4>
+                    <p>Support whenever you need it</p>
+                </div>
+                <div class="feature-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="icon"><i class="fas fa-check-circle"></i></div>
+                    <h4>Expert Team</h4>
+                    <p>Certified automotive specialists</p>
+                </div>
+                <div class="feature-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="icon"><i class="fas fa-truck"></i></div>
+                    <h4>Fast Shipping</h4>
+                    <p>3-5 day delivery worldwide</p>
+                </div>
+                <div class="feature-item" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Warranty Covered</h4>
+                    <p>Full manufacturer warranty</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 4: FAQ ===== -->
+        <div class="faq-section" data-aos="fade-up" data-aos-duration="800">
+            <div class="section-title">
+                <h2>Frequently Asked <span>Questions</span></h2>
+                <p>Quick answers to the most common questions</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item" onclick="this.classList.toggle('active')" data-aos="fade-up" data-aos-delay="100">
+                    <h4>How do I find the right part for my car? <i class="fas fa-chevron-down"></i></h4>
+                    <p>Use our part finder tool by entering your vehicle's make, model, and year. You can also search by part number or browse by category.</p>
+                </div>
+                <div class="faq-item" onclick="this.classList.toggle('active')" data-aos="fade-up" data-aos-delay="200">
+                    <h4>What is your return policy? <i class="fas fa-chevron-down"></i></h4>
+                    <p>We offer a 30-day return policy on all unused parts in original packaging. Some items may have specific return conditions.</p>
+                </div>
+                <div class="faq-item" onclick="this.classList.toggle('active')" data-aos="fade-up" data-aos-delay="150">
+                    <h4>How long does shipping take? <i class="fas fa-chevron-down"></i></h4>
+                    <p>Standard shipping takes 3-5 business days. Express shipping is available for 1-2 business day delivery.</p>
+                </div>
+                <div class="faq-item" onclick="this.classList.toggle('active')" data-aos="fade-up" data-aos-delay="250">
+                    <h4>Do you offer installation services? <i class="fas fa-chevron-down"></i></h4>
+                    <p>We partner with certified mechanics nationwide. Contact us to find an installation partner near you.</p>
+                </div>
+                <div class="faq-item" onclick="this.classList.toggle('active')" data-aos="fade-up" data-aos-delay="180">
+                    <h4>How do I track my order? <i class="fas fa-chevron-down"></i></h4>
+                    <p>Once your order ships, you'll receive a tracking number via email. You can also track it in your account dashboard.</p>
+                </div>
+                <div class="faq-item" onclick="this.classList.toggle('active')" data-aos="fade-up" data-aos-delay="280">
+                    <h4>Do you offer warranty on parts? <i class="fas fa-chevron-down"></i></h4>
+                    <p>Yes! All parts come with a manufacturer's warranty. The warranty period varies by product and brand.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 5: CONTACT FORM (with Email field, social icons removed) ===== -->
+        <div class="contact-section" data-aos="fade-up" data-aos-duration="800">
+            <div class="contact-info" data-aos="fade-right">
+                <h2>Get In <span>Touch</span></h2>
+                <p>Have a question that's not in our FAQs? Reach out to us directly and we'll get back to you as soon as possible.</p>
+
+                <div class="contact-detail">
+                    <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="text">
+                        123 Auto Lane, City, State 12345
+                        <small>Visit our showroom</small>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="text">
+                        +1 (555) 123-4567
+                        <small>Mon-Sat: 9AM - 8PM</small>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                    <div class="text">
+                        support@carpartsstore.com
+                        <small>We respond within 24 hours</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM WITH EMAIL FIELD, FIELD-WRAPPED ERRORS, NO RESIZE -->
+            <form class="contact-form" id="contactForm" data-aos="fade-left">
+                <div class="form-field">
+                    <input type="text" id="fullName" placeholder="Your Full Name" required />
+                    <div class="error-msg" id="nameError">Please enter a valid name (letters and spaces only).</div>
+                </div>
+
+                <div class="form-field">
+                    <input type="email" id="email" placeholder="Your Email Address" required />
+                    <div class="error-msg" id="emailError">Please enter a valid email address.</div>
+                </div>
+
+                <div class="form-field">
+                    <input type="text" id="subject" placeholder="Subject" required />
+                    <div class="error-msg" id="subjectError">Please enter a subject.</div>
+                </div>
+
+                <div class="form-field">
+                    <textarea id="message" placeholder="How can we help you?" required></textarea>
+                    <div class="error-msg" id="messageError">Please enter your message.</div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+
+        <!-- ===== SECTION 6: MAP ===== -->
+        <div class="map-section" data-aos="zoom-in" data-aos-duration="800">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316bb7b21d%3A0xb3f9af85a5e4b1b6!2sAuto%20Parts%20Store!5e0!3m2!1sen!2sus!4v1700000000000"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+    </div>
+
+    <!-- ===== FOOTER PLACEHOLDER ===== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- ===== AOS SCRIPTS ===== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+    <script>
+        // =========================================
+        // HEADER & FOOTER LOADER
+        // =========================================
+        (function loadHeaderFooter() {
+            // Load Header
+            fetch('header.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Header not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    initHeader();
+                })
+                .catch(error => {
+                    console.error('Error loading header:', error);
+                    document.getElementById('header-placeholder').innerHTML =
+                        '<div style="background:#0a0e1a; color:#ff6b00; padding:15px; text-align:center; font-weight:500; border-bottom:3px solid #ff6b00;">⚠️ Header failed to load</div>';
+                });
+
+            // Load Footer
+            fetch('footer.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Footer not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                    initFooter();
+                })
+                .catch(error => {
+                    console.error('Error loading footer:', error);
+                    document.getElementById('footer-placeholder').innerHTML =
+                        '<div style="background:#0a0e1a; color:#a8b8d0; padding:20px; text-align:center; border-top:3px solid #ff6b00;">⚠️ Footer failed to load</div>';
+                });
+        })();
+
+        // =========================================
+        // HEADER INITIALIZATION
+        // =========================================
+        function initHeader() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (hamburger && mobileMenu) {
+                function toggleMenu() {
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+                    const expanded = mobileMenu.classList.contains('active');
+                    hamburger.setAttribute('aria-expanded', expanded);
+                }
+
+                function closeMenu() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+
+                hamburger.addEventListener('click', toggleMenu);
+
+                document.addEventListener('click', function(e) {
+                    if (mobileMenu.classList.contains('active')) {
+                        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                            closeMenu();
+                        }
+                    }
+                });
+
+                window.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') closeMenu();
+                });
+
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) closeMenu();
+                });
+
+                document.querySelectorAll('.mobile-nav-link, .mobile-action-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        closeMenu();
+                    });
+                });
+            }
+
+            // Make sure Support link in header is active
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === 'support.html') {
+                    link.classList.add('active');
+                }
+            });
+
+            console.log('✅ Header initialized');
+        }
+
+        // =========================================
+        // FOOTER INITIALIZATION
+        // =========================================
+        function initFooter() {
+            console.log('✅ Footer initialized');
+        }
+
+        // =========================================
+        // FORM VALIDATION (EMAIL FIELD INCLUDED)
+        // =========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+
+            const fullName = document.getElementById('fullName');
+            const email = document.getElementById('email');
+            const subject = document.getElementById('subject');
+            const message = document.getElementById('message');
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const subjectError = document.getElementById('subjectError');
+            const messageError = document.getElementById('messageError');
+
+            // Name validation - letters and spaces only
+            fullName.addEventListener('input', function() {
+                // Remove any non-letter and non-space characters
+                this.value = this.value.replace(/[^A-Za-z\s]/g, '');
+                if (this.value.trim() === '') {
+                    this.classList.add('error');
+                    nameError.classList.add('show');
+                } else {
+                    this.classList.remove('error');
+                    nameError.classList.remove('show');
+                }
+            });
+
+            // Email validation
+            email.addEventListener('input', function() {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(this.value.trim())) {
+                    this.classList.add('error');
+                    emailError.classList.add('show');
+                } else {
+                    this.classList.remove('error');
+                    emailError.classList.remove('show');
+                }
+            });
+
+            subject.addEventListener('input', function() {
+                if (this.value.trim() === '') {
+                    this.classList.add('error');
+                    subjectError.classList.add('show');
+                } else {
+                    this.classList.remove('error');
+                    subjectError.classList.remove('show');
+                }
+            });
+
+            message.addEventListener('input', function() {
+                if (this.value.trim() === '') {
+                    this.classList.add('error');
+                    messageError.classList.add('show');
+                } else {
+                    this.classList.remove('error');
+                    messageError.classList.remove('show');
+                }
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+
+                // Validate name
+                const name = fullName.value.trim();
+                if (name === '') {
+                    fullName.classList.add('error');
+                    nameError.classList.add('show');
+                    isValid = false;
+                } else {
+                    fullName.classList.remove('error');
+                    nameError.classList.remove('show');
+                }
+
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const emailVal = email.value.trim();
+                if (!emailRegex.test(emailVal)) {
+                    email.classList.add('error');
+                    emailError.classList.add('show');
+                    isValid = false;
+                } else {
+                    email.classList.remove('error');
+                    emailError.classList.remove('show');
+                }
+
+                // Validate subject
+                if (subject.value.trim() === '') {
+                    subject.classList.add('error');
+                    subjectError.classList.add('show');
+                    isValid = false;
+                } else {
+                    subject.classList.remove('error');
+                    subjectError.classList.remove('show');
+                }
+
+                // Validate message
+                if (message.value.trim() === '') {
+                    message.classList.add('error');
+                    messageError.classList.add('show');
+                    isValid = false;
+                } else {
+                    message.classList.remove('error');
+                    messageError.classList.remove('show');
+                }
+
+                if (isValid) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    setTimeout(function() {
+                        window.location.href = '404.html';
+                    }, 1000);
+                }
+            });
+
+            console.log('✅ Form validation initialized (with Email field)');
+        });
+
+        // =========================================
+        // AOS INITIALIZATION
+        // =========================================
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 80,
+            easing: 'ease-out-cubic'
+        });
+
+        console.log('🚗 Car Parts Store | Support Page Loaded');
+        console.log('🏎️ AOS Animations initialized!');
+        console.log('📋 Contact form includes Email Address field (bug fixed)');
+    </script>
+
+</body>
+</html>

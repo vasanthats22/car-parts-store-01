@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>Car Parts Store - Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+        }
+
+        body {
+            padding-top: 100px;
+            background: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        /* ===== NAVBAR — RACING ORANGE ACCENT ===== */
+        .navbar {
+            background: linear-gradient(135deg, #0a0e1a 0%, #141e30 50%, #1a2a40 100%);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            border-bottom: 3px solid #ff6b00;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100px;
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* ===== LOGO ===== */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .logo-section:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+            transition: all 0.3s ease;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* ===== NAV LINKS ===== */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-link {
+            background: none;
+            border: none;
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #a8b8d0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 8px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-link i {
+            color: #ff6b00;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: #ff6b00;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+            background: rgba(255, 107, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .nav-link:hover::after {
+            width: 60%;
+        }
+
+        .nav-link:hover i {
+            color: #ff8833;
+            transform: scale(1.1);
+        }
+
+        .nav-link.active {
+            color: #ffffff;
+            background: rgba(255, 107, 0, 0.2);
+        }
+
+        .nav-link.active::after {
+            width: 60%;
+        }
+
+        /* ===== RIGHT ACTIONS ===== */
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .action-link {
+            background: transparent;
+            border: 2px solid rgba(255, 107, 0, 0.3);
+            padding: 0.6rem 1.6rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #a8b8d0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .action-link i {
+            color: #ff6b00;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .action-link:hover {
+            border-color: #ff6b00;
+            color: #ffffff;
+            background: rgba(255, 107, 0, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.2);
+        }
+
+        .action-link:hover i {
+            color: #ff8833;
+        }
+
+        .action-link.login-link {
+            background: linear-gradient(135deg, #ff6b00, #e05a00);
+            border: 2px solid #ff6b00;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .action-link.login-link i {
+            color: #ffffff;
+        }
+
+        .action-link.login-link:hover {
+            background: linear-gradient(135deg, #ff8833, #ff6b00);
+            border-color: #ff8833;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 107, 0, 0.4);
+        }
+
+        .action-link.login-link:hover i {
+            color: #ffffff;
+        }
+
+        /* ===== HAMBURGER ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 8px;
+            background: transparent;
+            border: none;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: #a8b8d0;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover span {
+            background: #ff6b00;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+            background: #ff6b00;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+            background: #ff6b00;
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100vh;
+            background: linear-gradient(180deg, #0a0e1a 0%, #141e30 50%, #1a2a40 100%);
+            z-index: 999;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            padding-top: 100px;
+            border-left: 3px solid #ff6b00;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            padding: 20px 30px;
+            gap: 4px;
+        }
+
+        .mobile-nav-link {
+            background: none;
+            border: none;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #a8b8d0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-radius: 12px;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .mobile-nav-link i {
+            width: 30px;
+            color: #ff6b00;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .mobile-nav-link:hover {
+            color: #ffffff;
+            background: rgba(255, 107, 0, 0.15);
+            transform: translateX(8px);
+        }
+
+        .mobile-nav-link:hover i {
+            color: #ff8833;
+            transform: scale(1.1);
+        }
+
+        .mobile-nav-link.active {
+            color: #ffffff;
+            background: rgba(255, 107, 0, 0.2);
+        }
+
+        .mobile-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 20px 30px;
+            margin-top: 10px;
+            border-top: 1px solid rgba(255, 107, 0, 0.2);
+        }
+
+        .mobile-action-link {
+            background: transparent;
+            border: 2px solid rgba(255, 107, 0, 0.3);
+            padding: 14px 0;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #a8b8d0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .mobile-action-link i {
+            color: #ff6b00;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .mobile-action-link:hover {
+            border-color: #ff6b00;
+            color: #ffffff;
+            background: rgba(255, 107, 0, 0.1);
+            transform: translateX(4px);
+        }
+
+        .mobile-action-link.login-mobile {
+            background: linear-gradient(135deg, #ff6b00, #e05a00);
+            border-color: #ff6b00;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .mobile-action-link.login-mobile i {
+            color: #ffffff;
+        }
+
+        .mobile-action-link.login-mobile:hover {
+            background: linear-gradient(135deg, #ff8833, #ff6b00);
+            border-color: #ff8833;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 4px;
+            }
+            .nav-link {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 85px;
+            }
+
+            .nav-container {
+                padding: 0 16px;
+                height: 85px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .right-actions {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .logo-img {
+                height: 55px;
+            }
+
+            .mobile-menu {
+                padding-top: 85px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 75px;
+            }
+
+            .nav-container {
+                height: 75px;
+                padding: 0 12px;
+            }
+
+            .logo-img {
+                height: 65px;
+            }
+
+            .mobile-nav-link {
+                font-size: 1rem;
+                padding: 14px 16px;
+            }
+
+            .mobile-action-link {
+                font-size: 0.9rem;
+                padding: 12px 0;
+            }
+
+            .mobile-menu {
+                padding-top: 75px;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== NAVBAR ====== -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <!-- LOGO (left) → index.html -->
+            <a href="index.html" class="logo-section">
+                <img src="Stacklyl2.webp" alt="Car Parts Store" class="logo-img">
+            </a>
+
+            <!-- 5 CENTER NAV LINKS - CORRECTED -->
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="engines.html" class="nav-link"><i class="fas fa-cogs"></i> Engines</a>
+                <a href="brakes.html" class="nav-link"><i class="fas fa-stop-circle"></i> Brakes</a>
+                <a href="exterior.html" class="nav-link"><i class="fas fa-car"></i> Exterior</a>
+                <a href="support.html" class="nav-link"><i class="fas fa-headset"></i> Support</a>
+            </div>
+
+            <!-- RIGHT: 2 action buttons -->
+            <div class="right-actions">
+                <a href="signup.html" class="action-link"><i class="fas fa-user-plus"></i> Register</a>
+                <a href="login.html" class="action-link login-link"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+
+            <!-- HAMBURGER (mobile) -->
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- ====== MOBILE OVERLAY ====== -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- ====== MOBILE MENU ====== -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="engines.html" class="mobile-nav-link"><i class="fas fa-cogs"></i> Engines</a>
+            <a href="brakes.html" class="mobile-nav-link"><i class="fas fa-stop-circle"></i> Brakes</a>
+            <a href="exterior.html" class="mobile-nav-link"><i class="fas fa-car"></i> Exterior</a>
+            <a href="support.html" class="mobile-nav-link"><i class="fas fa-headset"></i> Support</a>
+        </div>
+
+        <div class="mobile-actions">
+            <a href="signup.html" class="mobile-action-link"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="login.html" class="mobile-action-link login-mobile"><i class="fas fa-sign-in-alt"></i> Login</a>
+        </div>
+    </div>
+
+    <!-- ====== JAVASCRIPT ====== -->
+    <script>
+        (function() {
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+
+            function toggleMobileMenu() {
+                hamburgerBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                mobileOverlay.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            }
+
+            function closeMobileMenu() {
+                hamburgerBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            hamburgerBtn.addEventListener('click', toggleMobileMenu);
+            mobileOverlay.addEventListener('click', closeMobileMenu);
+
+            document.querySelectorAll('.mobile-nav-link, .mobile-action-link').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeMobileMenu();
+            });
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) closeMobileMenu();
+            });
+
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            console.log('Car Parts Store Navbar loaded successfully! 🚗🔧');
+        })();
+    </script>
+
+</body>
+</html>

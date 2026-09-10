@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Car Parts Store - Customer Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f5;
+            color: #0a0e1a;
+            overflow-x: hidden;
+            width: 100%;
+            padding-top: 100px;
+        }
+
+        /* ===== HEADER - CAR PARTS STORE COLOR SCHEME ===== */
+        .header {
+            background: linear-gradient(135deg, #0a0e1a 0%, #141e30 50%, #1a2a40 100%);
+            box-shadow: 0 4px 24px rgba(10, 14, 26, 0.4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+            border-bottom: 3px solid #ff6b00;
+        }
+
+        .header-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-area img {
+            height: 56px;
+            width: auto;
+        }
+
+        .logo-fallback {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: none;
+        }
+        .logo-fallback i {
+            color: #ff6b00;
+            margin-right: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #a8b8d0;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+            color: #ff6b00;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 107, 0, 0.15);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: #ff6b00;
+            color: #0a0e1a;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+        }
+
+        .nav-btn.active i {
+            color: #0a0e1a;
+        }
+
+        .role-badge {
+            background: #ff6b00;
+            color: #0a0e1a;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .back-home-btn, .logout-btn {
+            background: transparent;
+            border: 2px solid rgba(168, 184, 208, 0.15);
+            padding: 6px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+
+        .back-home-btn {
+            color: #a8b8d0;
+        }
+
+        .back-home-btn:hover {
+            background: rgba(255, 107, 0, 0.15);
+            color: #ffffff;
+            border-color: #ff6b00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.15);
+        }
+
+        .logout-btn {
+            background: #ff6b00;
+            color: #0a0e1a;
+            border-color: #ff6b00;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.2);
+        }
+
+        .logout-btn:hover {
+            background: #ff8833;
+            color: #0a0e1a;
+            border-color: #ff8833;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.35);
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 24px;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .dashboard-title {
+            margin-bottom: 24px;
+            border-left: 5px solid #ff6b00;
+            padding-left: 20px;
+        }
+
+        .dashboard-title h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0a0e1a;
+        }
+
+        .dashboard-title h1 span {
+            color: #ff6b00;
+        }
+
+        .dashboard-title p {
+            color: #6a7a8a;
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        .welcome-section {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.08), rgba(10, 14, 26, 0.03));
+            border-radius: 20px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(255, 107, 0, 0.15);
+        }
+
+        .welcome-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0a0e1a;
+        }
+
+        .welcome-section h2 span {
+            color: #ff6b00;
+        }
+
+        .welcome-section p {
+            color: #6a7a8a;
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        /* ===== STATS ===== */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 12px rgba(10, 14, 26, 0.04);
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 107, 0, 0.15);
+            border-color: #ff6b00;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.15), rgba(255, 107, 0, 0.04));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #ff6b00;
+        }
+
+        .stat-content h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0a0e1a;
+        }
+
+        .stat-content p {
+            color: #6a7a8a;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* ===== QUICK STATS ===== */
+        .quick-stats-bar {
+            background: #ffffff;
+            border-radius: 60px;
+            padding: 14px 28px;
+            margin-bottom: 28px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+        }
+
+        .quick-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-stat-label {
+            color: #6a7a8a;
+            font-size: 0.8rem;
+        }
+
+        .quick-stat-value {
+            font-weight: 700;
+            background: rgba(255, 107, 0, 0.12);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #0a0e1a;
+        }
+
+        /* ===== CHARTS ===== */
+        .charts-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .chart-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            box-shadow: 0 4px 12px rgba(10, 14, 26, 0.03);
+            width: 100%;
+        }
+
+        .chart-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #0a0e1a;
+        }
+
+        .chart-card h3 i {
+            color: #ff6b00;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            min-height: 180px;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto !important;
+            width: 100% !important;
+        }
+
+        /* ===== DASHBOARD GRID ===== */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .section-header h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0a0e1a;
+        }
+
+        .section-header a {
+            color: #ff6b00;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .section-header a:hover {
+            color: #e05a00;
+        }
+
+        /* ===== ORDER CARDS ===== */
+        .order-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .order-item {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 14px 18px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            transition: all 0.2s;
+        }
+
+        .order-item:hover {
+            border-color: #ff6b00;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.08);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .order-id {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #0a0e1a;
+        }
+
+        .order-badge {
+            background: rgba(255, 107, 0, 0.15);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            color: #0a0e1a;
+            font-weight: 600;
+        }
+
+        .order-desc {
+            font-size: 0.85rem;
+            color: #6a7a8a;
+            margin-bottom: 8px;
+        }
+
+        .order-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .order-info {
+            font-size: 0.75rem;
+            color: #6a7a8a;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .order-info i {
+            color: #ff6b00;
+        }
+
+        .status-badge {
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 600;
+        }
+
+        .status-pending { background: #fff3e0; color: #f57c00; }
+        .status-processing { background: #e3f2fd; color: #0a2540; }
+        .status-shipped { background: #e8f5e9; color: #2e7d32; }
+        .status-delivered { background: #e8f5e9; color: #2e7d32; }
+        .status-cancelled { background: #fce4ec; color: #c62828; }
+
+        /* ===== RIGHT COLUMN ===== */
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 18px 20px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+        }
+
+        .info-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #0a0e1a;
+        }
+
+        .info-card h3 i {
+            color: #ff6b00;
+        }
+
+        .wishlist-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(10, 14, 26, 0.06);
+        }
+
+        .wishlist-item:last-child {
+            border-bottom: none;
+        }
+
+        .wishlist-name {
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: #0a0e1a;
+        }
+
+        .wishlist-price {
+            font-size: 0.7rem;
+            color: #ff6b00;
+            font-weight: 700;
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(10, 14, 26, 0.06);
+        }
+
+        .alert-item:last-child {
+            border-bottom: none;
+        }
+
+        .alert-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .alert-icon.urgent { background: #fce4ec; color: #c62828; }
+        .alert-icon.info { background: #e3f2fd; color: #0a2540; }
+        .alert-icon.success { background: #e8f5e9; color: #2e7d32; }
+
+        .alert-text {
+            font-size: 0.8rem;
+            color: #0a0e1a;
+        }
+
+        .alert-text .highlight {
+            color: #ff6b00;
+            font-weight: 600;
+        }
+
+        .alert-time {
+            font-size: 0.6rem;
+            color: #b8b8b8;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .action-btn {
+            background: #f0f2f5;
+            border: 1px solid rgba(10, 14, 26, 0.08);
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            color: #0a0e1a;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-btn i {
+            color: #ff6b00;
+        }
+
+        .action-btn:hover {
+            background: #0a0e1a;
+            color: #ffffff;
+            border-color: #0a0e1a;
+            transform: translateY(-2px);
+        }
+
+        .action-btn:hover i {
+            color: #ffffff;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .profile-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(10, 14, 26, 0.06);
+        }
+
+        .profile-row:last-child {
+            border-bottom: none;
+        }
+
+        .profile-label {
+            color: #6a7a8a;
+            font-size: 0.75rem;
+        }
+
+        .profile-value {
+            color: #0a0e1a;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            display: block;
+        }
+
+        .content-section.hidden {
+            display: none;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .enhanced-card {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.05), #ffffff);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+        }
+
+        .enhanced-card h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #0a0e1a;
+        }
+
+        .enhanced-card p {
+            color: #6a7a8a;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .enhanced-card .highlight {
+            color: #ff6b00;
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 6px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b00, #ff8833);
+            border-radius: 10px;
+        }
+
+        /* ===== RESPONSIVE USER TABLE ===== */
+        .user-table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 -4px;
+        }
+
+        .user-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .user-table th {
+            text-align: left;
+            padding: 10px 12px;
+            color: #6a7a8a;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255, 107, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        .user-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(10, 14, 26, 0.06);
+        }
+
+        .user-table tr:hover {
+            background: rgba(255, 107, 0, 0.04);
+        }
+
+        /* ===== MOBILE USER CARDS ===== */
+        .mobile-user-cards {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mobile-user-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 14px 16px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+        }
+
+        .mobile-user-card .user-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+        }
+
+        .mobile-user-card .user-label {
+            color: #6a7a8a;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .mobile-user-card .user-value {
+            color: #0a0e1a;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .mobile-user-card .user-value.role {
+            background: rgba(255, 107, 0, 0.12);
+            padding: 2px 10px;
+            border-radius: 20px;
+            color: #0a0e1a;
+            font-size: 0.7rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1100px) {
+            .header-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .logo-area { justify-content: center; }
+            .nav-links { justify-content: center; }
+            .right-actions { justify-content: center; }
+            body { padding-top: 160px; }
+        }
+
+        @media (max-width: 900px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .charts-row { grid-template-columns: repeat(2, 1fr); }
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .logo-area img { height: 56px; }
+            .quick-stats-bar { border-radius: 24px; flex-direction: column; align-items: stretch; }
+            .quick-stat-item { justify-content: space-between; }
+            .nav-btn { padding: 6px 14px; font-size: 0.75rem; }
+            body { padding-top: 180px; }
+            
+            .user-table-wrapper {
+                display: none;
+            }
+            .mobile-user-cards {
+                display: flex;
+            }
+            
+            .container { padding: 16px; }
+            .stats-row { grid-template-columns: 1fr; }
+            .charts-row { grid-template-columns: 1fr; }
+            .chart-container { min-height: 200px; }
+            .dashboard-title h1 { font-size: 22px; }
+            .welcome-section { padding: 14px 16px; }
+            .stat-card { padding: 14px; }
+            .quick-stats-bar { padding: 14px; }
+            .role-badge { font-size: 0.55rem; padding: 3px 10px; }
+            .back-home-btn, .logout-btn { padding: 5px 14px; font-size: 0.7rem; }
+            .dashboard-title { padding-left: 12px; }
+        }
+
+        @media (max-width: 600px) {
+            .logo-area img { height: 56px; }
+            body { padding-top: 200px; }
+            .back-home-btn span, .logout-btn span { display: inline; }
+            .back-home-btn, .logout-btn { padding: 5px 12px; font-size: 0.7rem; }
+            .right-actions { gap: 6px; }
+        }
+
+        @media (max-width: 480px) {
+            .logo-area img { height: 56px; }
+            body { padding-top: 220px; }
+            .right-actions { flex-direction: row; align-items: center; flex-wrap: wrap; justify-content: center; }
+            .back-home-btn, .logout-btn { padding: 4px 10px; font-size: 0.65rem; }
+            .back-home-btn span, .logout-btn span { display: inline; font-size: 0.6rem; }
+            .nav-btn { padding: 4px 10px; font-size: 0.65rem; }
+            .nav-btn i { margin-right: 4px; }
+            .header-container { padding: 8px 12px; gap: 8px; }
+            .dashboard-title h1 { font-size: 18px; }
+            .welcome-section h2 { font-size: 16px; }
+            .stat-content h3 { font-size: 1.1rem; }
+            .stat-card { padding: 10px 12px; gap: 10px; }
+            .stat-icon { width: 36px; height: 36px; font-size: 1rem; }
+            .quick-stat-item { font-size: 0.65rem; }
+            .role-badge { font-size: 0.5rem; padding: 2px 8px; }
+        }
+
+        @media (max-width: 400px) {
+            .logo-area img { height: 50px; }
+            body { padding-top: 200px; }
+            .nav-btn { font-size: 0.55rem; padding: 3px 8px; }
+            .back-home-btn, .logout-btn { font-size: 0.55rem; padding: 3px 8px; }
+            .back-home-btn span, .logout-btn span { font-size: 0.5rem; }
+            .header-container { padding: 6px 8px; gap: 4px; }
+            .right-actions { gap: 4px; }
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f0f2f5; }
+        ::-webkit-scrollbar-thumb { background: #ff6b00; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e05a00; }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="index.html" class="logo-area">
+            <img src="Stacklyl2.webp" alt="Car Parts Store" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="logo-fallback"><i class="fas fa-car"></i>CarParts</span>
+        </a>
+        <div class="nav-links">
+            <button class="nav-btn active" data-section="dashboard"><i class="fas fa-chart-pie"></i> Dashboard</button>
+            <button class="nav-btn" data-section="orders"><i class="fas fa-shopping-cart"></i> Orders</button>
+            <button class="nav-btn" data-section="wishlist"><i class="fas fa-heart"></i> Wishlist</button>
+            <button class="nav-btn" data-section="vehicles"><i class="fas fa-car"></i> Vehicles</button>
+            <button class="nav-btn" data-section="account"><i class="fas fa-user-cog"></i> Account</button>
+        </div>
+        <div class="right-actions">
+            <span class="role-badge"><i class="fas fa-user"></i> Customer</span>
+            <button class="back-home-btn" id="backHomeBtn"><i class="fas fa-home"></i> <span>Home</span></button>
+            <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div class="dashboard-title">
+        <h1>🚗 Car Parts Store <span>Customer Dashboard</span></h1>
+        <p>Track your orders, manage wishlist, and update your profile</p>
+    </div>
+
+    <!-- ===== DASHBOARD SECTION ===== -->
+    <div id="dashboard-section" class="content-section">
+        <div class="welcome-section">
+            <h2>Welcome back, <span>John Anderson</span> 👋</h2>
+            <p>You have 12 total orders, 8 items in wishlist, and 3 orders in transit</p>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
+                <div class="stat-content">
+                    <h3 id="statOrders">12</h3>
+                    <p>Total Orders</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-heart"></i></div>
+                <div class="stat-content">
+                    <h3 id="statWishlist">8</h3>
+                    <p>Wishlist Items</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-truck"></i></div>
+                <div class="stat-content">
+                    <h3 id="statTransit">3</h3>
+                    <p>In Transit</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-car"></i></div>
+                <div class="stat-content">
+                    <h3 id="statVehicles">2</h3>
+                    <p>Saved Vehicles</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-stats-bar">
+            <div class="quick-stat-item">
+                <span class="quick-stat-label">📦 Pending Orders</span>
+                <span class="quick-stat-value" id="quickPending">2</span>
+            </div>
+            <div class="quick-stat-item">
+                <span class="quick-stat-label">🚚 Shipped Orders</span>
+                <span class="quick-stat-value" id="quickShipped">1</span>
+            </div>
+            <div class="quick-stat-item">
+                <span class="quick-stat-label">⭐ Recently Viewed</span>
+                <span class="quick-stat-value" id="quickViewed">5</span>
+            </div>
+            <div class="quick-stat-item">
+                <span class="quick-stat-label">🏷️ Active Coupons</span>
+                <span class="quick-stat-value" id="quickCoupons">3</span>
+            </div>
+        </div>
+
+        <!-- ===== CHARTS ROW ===== -->
+        <div class="charts-row">
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-line"></i> Monthly Spending</h3>
+                <div class="chart-container"><canvas id="spendingChart"></canvas></div>
+            </div>
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-pie"></i> Parts Categories</h3>
+                <div class="chart-container"><canvas id="categoryChart"></canvas></div>
+            </div>
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-bar"></i> Most Purchased Parts</h3>
+                <div class="chart-container"><canvas id="partsChart"></canvas></div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div>
+                <div class="section-header">
+                    <h2>📦 Recent Orders</h2>
+                    <a href="404.html">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="order-cards">
+                    <div class="order-item">
+                        <div class="order-header">
+                            <span class="order-id">#ORD-1001 · V8 Performance Kit</span>
+                            <span class="order-badge">Premium</span>
+                        </div>
+                        <div class="order-desc">Complete V8 engine performance upgrade kit</div>
+                        <div class="order-meta">
+                            <div class="order-info"><i class="fas fa-calendar-alt"></i> Jun 15, 2026</div>
+                            <span class="status-badge status-pending">Pending</span>
+                        </div>
+                    </div>
+                    <div class="order-item">
+                        <div class="order-header">
+                            <span class="order-id">#ORD-1002 · Carbon Ceramic Brakes</span>
+                            <span class="order-badge">Luxury</span>
+                        </div>
+                        <div class="order-desc">High-performance carbon ceramic brake system</div>
+                        <div class="order-meta">
+                            <div class="order-info"><i class="fas fa-calendar-alt"></i> Jun 14, 2026</div>
+                            <span class="status-badge status-processing">Processing</span>
+                        </div>
+                    </div>
+                    <div class="order-item">
+                        <div class="order-header">
+                            <span class="order-id">#ORD-1003 · LED Headlight Assembly</span>
+                            <span class="order-badge">Standard</span>
+                        </div>
+                        <div class="order-desc">Premium LED headlight conversion kit (pair)</div>
+                        <div class="order-meta">
+                            <div class="order-info"><i class="fas fa-calendar-alt"></i> Jun 13, 2026</div>
+                            <span class="status-badge status-shipped">Shipped</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <div class="info-card">
+                    <h3><i class="fas fa-user"></i> Profile Summary</h3>
+                    <div class="profile-info">
+                        <div class="profile-row">
+                            <span class="profile-label">Name</span>
+                            <span class="profile-value">John Anderson</span>
+                        </div>
+                        <div class="profile-row">
+                            <span class="profile-label">Email</span>
+                            <span class="profile-value">john@email.com</span>
+                        </div>
+                        <div class="profile-row">
+                            <span class="profile-label">Member Since</span>
+                            <span class="profile-value">Jan 2024</span>
+                        </div>
+                        <div class="profile-row">
+                            <span class="profile-label">Total Spent</span>
+                            <span class="profile-value">$3,847</span>
+                        </div>
+                    </div>
+                    <a href="404.html" class="action-btn" style="margin-top:10px; width:100%; justify-content:center;">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </a>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-heart"></i> Wishlist</h3>
+                    <div class="wishlist-item">
+                        <span class="wishlist-name">Turbocharger Kit</span>
+                        <span class="wishlist-price">$1,299</span>
+                    </div>
+                    <div class="wishlist-item">
+                        <span class="wishlist-name">Carbon Fiber Spoiler</span>
+                        <span class="wishlist-price">$899</span>
+                    </div>
+                    <div class="wishlist-item">
+                        <span class="wishlist-name">Performance Exhaust</span>
+                        <span class="wishlist-price">$649</span>
+                    </div>
+                    <a href="404.html" class="action-btn" style="margin-top:10px; width:100%; justify-content:center;">
+                        <i class="fas fa-heart"></i> View Full Wishlist
+                    </a>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-bell"></i> Notifications</h3>
+                    <div class="alert-item">
+                        <div class="alert-icon success"><i class="fas fa-check"></i></div>
+                        <div class="alert-text">Order <span class="highlight">#ORD-1003</span> has been shipped</div>
+                        <span class="alert-time">2h ago</span>
+                    </div>
+                    <div class="alert-item">
+                        <div class="alert-icon info"><i class="fas fa-tag"></i></div>
+                        <div class="alert-text">New coupon: <span class="highlight">SUMMER20</span> - 20% off</div>
+                        <span class="alert-time">1d ago</span>
+                    </div>
+                    <div class="alert-item">
+                        <div class="alert-icon urgent"><i class="fas fa-clock"></i></div>
+                        <div class="alert-text">Order <span class="highlight">#ORD-1002</span> processing delay</div>
+                        <span class="alert-time">3d ago</span>
+                    </div>
+                    <a href="404.html" class="action-btn" style="margin-top:10px; width:100%; justify-content:center;">
+                        <i class="fas fa-eye"></i> View All Notifications
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ORDERS SECTION ===== -->
+    <div id="orders-section" class="content-section hidden">
+        <div class="dashboard-title">
+            <h1>📦 My Orders</h1>
+            <p>Track all your orders and view order history</p>
+        </div>
+        <div class="enhanced-card">
+            <h3>Order History</h3>
+            
+            <div class="user-table-wrapper">
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Product</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>#ORD-1001</strong></td>
+                            <td>V8 Performance Kit</td>
+                            <td>Jun 15, 2026</td>
+                            <td>$2,499</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>#ORD-1002</strong></td>
+                            <td>Carbon Ceramic Brakes</td>
+                            <td>Jun 14, 2026</td>
+                            <td>$1,899</td>
+                            <td><span class="status-badge status-processing">Processing</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>#ORD-1003</strong></td>
+                            <td>LED Headlight Assembly</td>
+                            <td>Jun 13, 2026</td>
+                            <td>$429</td>
+                            <td><span class="status-badge status-shipped">Shipped</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>#ORD-1004</strong></td>
+                            <td>Performance Exhaust</td>
+                            <td>Jun 10, 2026</td>
+                            <td>$1,249</td>
+                            <td><span class="status-badge status-delivered">Delivered</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>#ORD-1005</strong></td>
+                            <td>Turbocharger Kit</td>
+                            <td>Jun 5, 2026</td>
+                            <td>$1,299</td>
+                            <td><span class="status-badge status-cancelled">Cancelled</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mobile-user-cards">
+                <div class="mobile-user-card">
+                    <div class="user-row"><span class="user-label">Order</span><span class="user-value"><strong>#ORD-1001</strong></span></div>
+                    <div class="user-row"><span class="user-label">Product</span><span class="user-value">V8 Performance Kit</span></div>
+                    <div class="user-row"><span class="user-label">Date</span><span class="user-value">Jun 15, 2026</span></div>
+                    <div class="user-row"><span class="user-label">Total</span><span class="user-value">$2,499</span></div>
+                    <div class="user-row"><span class="user-label">Status</span><span class="user-value"><span class="status-badge status-pending">Pending</span></span></div>
+                </div>
+                <div class="mobile-user-card">
+                    <div class="user-row"><span class="user-label">Order</span><span class="user-value"><strong>#ORD-1002</strong></span></div>
+                    <div class="user-row"><span class="user-label">Product</span><span class="user-value">Carbon Ceramic Brakes</span></div>
+                    <div class="user-row"><span class="user-label">Date</span><span class="user-value">Jun 14, 2026</span></div>
+                    <div class="user-row"><span class="user-label">Total</span><span class="user-value">$1,899</span></div>
+                    <div class="user-row"><span class="user-label">Status</span><span class="user-value"><span class="status-badge status-processing">Processing</span></span></div>
+                </div>
+            </div>
+
+            <a href="404.html" class="action-btn" style="margin-top:16px;"><i class="fas fa-shopping-cart"></i> Shop More Parts</a>
+        </div>
+    </div>
+
+    <!-- ===== WISHLIST SECTION ===== -->
+    <div id="wishlist-section" class="content-section hidden">
+        <div class="dashboard-title">
+            <h1>❤️ My Wishlist</h1>
+            <p>Save your favorite parts and accessories</p>
+        </div>
+        <div class="grid-2">
+            <div class="enhanced-card">
+                <h3>Saved Items</h3>
+                <div class="wishlist-item">
+                    <span class="wishlist-name">Turbocharger Kit</span>
+                    <span class="wishlist-price">$1,299</span>
+                </div>
+                <div class="wishlist-item">
+                    <span class="wishlist-name">Carbon Fiber Spoiler</span>
+                    <span class="wishlist-price">$899</span>
+                </div>
+                <div class="wishlist-item">
+                    <span class="wishlist-name">Performance Exhaust</span>
+                    <span class="wishlist-price">$649</span>
+                </div>
+                <div class="wishlist-item">
+                    <span class="wishlist-name">LED Headlight Kit</span>
+                    <span class="wishlist-price">$429</span>
+                </div>
+                <div class="wishlist-item">
+                    <span class="wishlist-name">Cold Air Intake</span>
+                    <span class="wishlist-price">$349</span>
+                </div>
+                <a href="404.html" class="action-btn" style="margin-top:12px;"><i class="fas fa-shopping-cart"></i> Add All to Cart</a>
+            </div>
+            <div class="enhanced-card">
+                <h3>Recommendations</h3>
+                <p>🔥 <span class="highlight">Performance Chip Tuner</span> - $299</p>
+                <p>🔥 <span class="highlight">Sport Suspension Kit</span> - $899</p>
+                <p>🔥 <span class="highlight">Racing Spark Plugs</span> - $49</p>
+                <p>🔥 <span class="highlight">Oil Filter Kit</span> - $89</p>
+                <a href="404.html" class="action-btn" style="margin-top:12px;"><i class="fas fa-search"></i> Browse More</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VEHICLES SECTION ===== -->
+    <div id="vehicles-section" class="content-section hidden">
+        <div class="dashboard-title">
+            <h1>🚗 My Vehicles</h1>
+            <p>Manage your saved vehicles for quick part matching</p>
+        </div>
+        <div class="grid-2">
+            <div class="enhanced-card">
+                <h3><i class="fas fa-car"></i> Vehicle 1</h3>
+                <p><strong>Make:</strong> Ford</p>
+                <p><strong>Model:</strong> Mustang GT</p>
+                <p><strong>Year:</strong> 2022</p>
+                <p><strong>Engine:</strong> 5.0L V8</p>
+                <a href="404.html" class="action-btn" style="margin-top:12px;"><i class="fas fa-search"></i> Find Parts</a>
+            </div>
+            <div class="enhanced-card">
+                <h3><i class="fas fa-car"></i> Vehicle 2</h3>
+                <p><strong>Make:</strong> Chevrolet</p>
+                <p><strong>Model:</strong> Camaro SS</p>
+                <p><strong>Year:</strong> 2021</p>
+                <p><strong>Engine:</strong> 6.2L V8</p>
+                <a href="404.html" class="action-btn" style="margin-top:12px;"><i class="fas fa-search"></i> Find Parts</a>
+            </div>
+        </div>
+        <a href="404.html" class="action-btn" style="margin-top:12px;"><i class="fas fa-plus"></i> Add New Vehicle</a>
+    </div>
+
+    <!-- ===== ACCOUNT SECTION ===== -->
+    <div id="account-section" class="content-section hidden">
+        <div class="dashboard-title">
+            <h1>⚙️ Account Settings</h1>
+            <p>Update your profile, password, and preferences</p>
+        </div>
+        <div class="grid-2">
+            <div class="enhanced-card">
+                <h3>Personal Information</h3>
+                <p><strong>Name:</strong> John Anderson</p>
+                <p><strong>Email:</strong> john.anderson@email.com</p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Address:</strong> 123 Auto Lane, City, State</p>
+                <a href="404.html" class="action-btn" style="margin-top:12px;"><i class="fas fa-edit"></i> Edit Profile</a>
+            </div>
+            <div class="enhanced-card">
+                <h3>Security</h3>
+                <p><strong>Password:</strong> ********</p>
+                <p><strong>2FA:</strong> Disabled</p>
+                <p><strong>Last Login:</strong> Today, 10:30 AM</p>
+                <a href="404.html" class="action-btn" style="margin-top:12px;"><i class="fas fa-lock"></i> Change Password</a>
+                <a href="404.html" class="action-btn" style="margin-top:8px;"><i class="fas fa-shield-alt"></i> Enable 2FA</a>
+            </div>
+        </div>
+        <div class="enhanced-card">
+            <h3>Preferences</h3>
+            <p>🔔 Email Notifications: <span class="highlight">Enabled</span></p>
+            <p>📱 SMS Alerts: <span class="highlight">Disabled</span></p>
+            <p>📦 Order Updates: <span class="highlight">Enabled</span></p>
+            <p>🎯 Promotions: <span class="highlight">Enabled</span></p>
+            <a href="404.html" class="action-btn" style="margin-top:12px;"><i class="fas fa-sliders-h"></i> Manage Preferences</a>
+        </div>
+    </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const barColors = ['#ff6b00', '#e05a00', '#0a0e1a', '#6a7a8a'];
+
+        // ===== SPENDING CHART (Line) =====
+        const spendingCtx = document.getElementById('spendingChart').getContext('2d');
+        new Chart(spendingCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                datasets: [{ 
+                    label: 'Spending', 
+                    data: [180, 220, 350, 280, 420, 380, 520], 
+                    borderColor: '#ff6b00', 
+                    backgroundColor: 'rgba(255, 107, 0, 0.12)', 
+                    tension: 0.4, 
+                    fill: true, 
+                    borderWidth: 3 
+                }]
+            },
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: true, 
+                aspectRatio: 1.5, 
+                plugins: { legend: { display: false } }, 
+                scales: { 
+                    y: { beginAtZero: true, grid: { color: '#f0f0f0' } }, 
+                    x: { grid: { display: false } } 
+                } 
+            }
+        });
+
+        // ===== CATEGORY PIE CHART =====
+        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        new Chart(categoryCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Engine Parts', 'Brake Systems', 'Exterior Parts', 'Performance Parts', 'Electrical'],
+                datasets: [{ 
+                    data: [12, 8, 6, 4, 3], 
+                    backgroundColor: ['#ff6b00', '#e05a00', '#0a0e1a', '#6a7a8a', '#b8b8b8'], 
+                    borderWidth: 0 
+                }]
+            },
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: true, 
+                aspectRatio: 1.5, 
+                plugins: { 
+                    legend: { position: 'bottom', labels: { font: { size: 11 } } } 
+                } 
+            }
+        });
+
+        // ===== TOP PURCHASED PARTS BAR CHART =====
+        const partsCtx = document.getElementById('partsChart').getContext('2d');
+        new Chart(partsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['V8 Engine Kit', 'Carbon Brakes', 'LED Headlights', 'Exhaust System', 'Turbocharger'],
+                datasets: [{ 
+                    label: 'Times Purchased', 
+                    data: [5, 4, 3, 3, 2], 
+                    backgroundColor: barColors, 
+                    borderRadius: 8, 
+                    barPercentage: 0.7 
+                }]
+            },
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: true, 
+                aspectRatio: 1.5, 
+                plugins: { legend: { display: false } }, 
+                scales: { 
+                    y: { beginAtZero: true, grid: { color: '#f0f0f0' } }, 
+                    x: { grid: { display: false } } 
+                } 
+            }
+        });
+
+        // ===== NAVIGATION =====
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const sections = {
+            dashboard: document.getElementById('dashboard-section'),
+            orders: document.getElementById('orders-section'),
+            wishlist: document.getElementById('wishlist-section'),
+            vehicles: document.getElementById('vehicles-section'),
+            account: document.getElementById('account-section')
+        };
+
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                navBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.getAttribute('data-section');
+                Object.values(sections).forEach(s => { if (s) s.classList.add('hidden'); });
+                if (sections[section]) {
+                    sections[section].classList.remove('hidden');
+                }
+            });
+        });
+
+        // ===== BUTTONS =====
+        document.getElementById('backHomeBtn').addEventListener('click', () => window.location.href = 'index.html');
+        document.getElementById('logoutBtn').addEventListener('click', () => window.location.href = 'login.html');
+
+        // ===== LIVE UPDATES =====
+        function updateStats() {
+            document.getElementById('statOrders').textContent = Math.floor(Math.random() * 8) + 8;
+            document.getElementById('statWishlist').textContent = Math.floor(Math.random() * 5) + 5;
+            document.getElementById('statTransit').textContent = Math.floor(Math.random() * 3) + 1;
+            document.getElementById('statVehicles').textContent = Math.floor(Math.random() * 3) + 1;
+            document.getElementById('quickPending').textContent = Math.floor(Math.random() * 3) + 1;
+            document.getElementById('quickShipped').textContent = Math.floor(Math.random() * 3) + 1;
+            document.getElementById('quickViewed').textContent = Math.floor(Math.random() * 8) + 3;
+            document.getElementById('quickCoupons').textContent = Math.floor(Math.random() * 4) + 1;
+        }
+        setInterval(updateStats, 10000);
+
+        console.log('%c🚗 Car Parts Store | Customer Dashboard', 'color: #ff6b00; font-size: 16px; font-weight: bold;');
+        console.log('%c🏎️ Welcome to your customer dashboard with charts!', 'color: #0a0e1a; font-size: 12px;');
+    });
+</script>
+
+</body>
+</html>

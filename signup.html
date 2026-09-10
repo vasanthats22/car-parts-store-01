@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>Car Parts Store - Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            overflow-x: hidden;
+            padding-top: 100px;
+        }
+
+        /* ===== HEADER PLACEHOLDER ===== */
+        #header-placeholder {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        /* ===== MAIN WRAPPER ===== */
+        .main-wrapper {
+            max-width: 1140px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: calc(100vh - 280px);
+        }
+
+        /* ===== FOOTER PLACEHOLDER ===== */
+        #footer-placeholder {
+            width: 100%;
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        /* ===== SIGNUP FORM ===== */
+        .signup-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            flex: 1;
+        }
+
+        .signup-card {
+            display: flex;
+            flex-direction: row;
+            max-width: 820px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(10, 14, 26, 0.15);
+            overflow: hidden;
+            border: 1px solid rgba(255, 107, 0, 0.08);
+            position: relative;
+            animation: slideUp 0.6s ease-out;
+            min-height: 500px;
+            max-height: 600px;
+        }
+
+        .signup-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0a0e1a, #ff6b00, #0a0e1a);
+            background-size: 200% 100%;
+            animation: gradientMove 3s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== LEFT COLUMN - VISUAL ===== */
+        .signup-visual {
+            display: flex;
+            flex: 0.8;
+            background: linear-gradient(135deg, #0a0e1a, #141e30, #1a2a40);
+            padding: 2rem;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            position: relative;
+        }
+
+        .signup-visual::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .signup-visual .visual-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .signup-visual .visual-content img {
+            max-width: 180px;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 16px;
+            animation: floatImage 4s ease-in-out infinite;
+            border-radius: 12px;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 0, 0.1));
+        }
+
+        @keyframes floatImage {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-12px) scale(1.02); }
+        }
+
+        .signup-visual .visual-content h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .signup-visual .visual-content h3 span {
+            color: #ff6b00;
+        }
+
+        .signup-visual .visual-content p {
+            font-size: 0.85rem;
+            color: #a8b8d0;
+            margin-top: 4px;
+        }
+
+        /* ===== RIGHT COLUMN - FORM ===== */
+        .signup-form {
+            flex: 1.2;
+            padding: 2.2rem 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #ffffff;
+            overflow-y: auto;
+        }
+
+        .signup-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 107, 0, 0.12);
+            color: #0a0e1a;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            width: fit-content;
+        }
+
+        .signup-badge i {
+            color: #ff6b00;
+            font-size: 0.7rem;
+        }
+
+        .signup-heading {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #0a0e1a;
+            margin-bottom: 4px;
+        }
+
+        .signup-heading span {
+            color: #ff6b00;
+        }
+
+        .signup-subhead {
+            font-size: 0.85rem;
+            color: #6a7a8a;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .signup-subhead i {
+            color: #ff6b00;
+            margin-right: 4px;
+        }
+
+        .signup-google-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 0.6rem;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #0a0e1a;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+
+        .signup-google-row:hover {
+            border-color: #ff6b00;
+            background: rgba(255, 107, 0, 0.04);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(10, 14, 26, 0.06);
+        }
+
+        .signup-google-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.6rem;
+            height: 1.6rem;
+            flex-shrink: 0;
+        }
+        .signup-google-icon svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .signup-divider {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin: 2px 0 16px;
+        }
+        .signup-divider hr {
+            flex: 1;
+            border: none;
+            height: 1px;
+            background: #e8e8e8;
+        }
+        .signup-divider span {
+            color: #7a8a8a;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* ===== BUG FIX: FIELD WRAPPER ===== */
+        /* Each input+error pair now lives in .signup-field.
+           The margin-bottom is on the WRAPPER, not the input group,
+           so the error always hugs its own input and the gap sits
+           AFTER the error (before the next field). */
+        .signup-field {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .signup-input-group {
+            position: relative;
+            margin-bottom: 0;      /* ← moved to .signup-field */
+            width: 100%;
+        }
+
+        .signup-input-group i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7a8a8a;
+            font-size: 0.85rem;
+            width: 1.1rem;
+            text-align: center;
+            pointer-events: none;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .signup-input-group input {
+            width: 100%;
+            padding: 0.65rem 0.8rem 0.65rem 2.6rem;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            outline: none;
+            color: #0a0e1a;
+            font-weight: 500;
+        }
+
+        .signup-input-group input:focus {
+            border-color: #ff6b00;
+            box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.1);
+        }
+
+        .signup-input-group input:focus + i {
+            color: #ff6b00;
+        }
+
+        .signup-input-group input::placeholder {
+            color: #b8b8b8;
+            font-weight: 400;
+        }
+
+        .signup-input-group.input-error input {
+            border-color: #e53e3e;
+        }
+
+        .signup-error-msg {
+            color: #e53e3e;
+            font-size: 0.7rem;
+            margin-top: 3px;       /* snug against its own input/checkbox */
+            display: none;
+            padding-left: 0.5rem;
+            font-weight: 500;
+        }
+        .signup-error-msg.show {
+            display: block;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        /* ===== BUG FIX: Terms row margin now controlled by .signup-field ===== */
+        .signup-terms-row {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin: 4px 0 0;        /* ← removed bottom margin (now on .signup-field) */
+            font-size: 0.8rem;
+            color: #0a0e1a;
+            cursor: pointer;
+            font-weight: 500;
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        .signup-terms-row input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #ff6b00;
+            border-radius: 4px;
+            border: 2px solid #d5dce4;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .signup-terms-row input[type="checkbox"]:hover {
+            transform: scale(1.05);
+        }
+
+        .signup-terms-row a {
+            color: #ff6b00;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .signup-terms-row a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b00;
+            transition: width 0.3s ease;
+        }
+
+        .signup-terms-row a:hover::after {
+            width: 100%;
+        }
+
+        .signup-terms-row a:hover {
+            color: #e05a00;
+        }
+
+        .signup-btn-wrapper {
+            display: flex;
+            justify-content: stretch;
+            margin-bottom: 16px;
+            width: 100%;
+        }
+
+        .signup-submit-btn {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            background: linear-gradient(135deg, #ff6b00, #e05a00);
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .signup-submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .signup-submit-btn:hover {
+            background: linear-gradient(135deg, #ff8833, #ff6b00);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.4);
+        }
+
+        .signup-submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .signup-submit-btn i {
+            margin-right: 8px;
+        }
+
+        .signin-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6a7a8a;
+        }
+
+        .signin-text a {
+            color: #ff6b00;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .signin-text a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b00;
+            transition: width 0.3s ease;
+        }
+
+        .signin-text a:hover::after {
+            width: 100%;
+        }
+
+        .signin-text a:hover {
+            color: #e05a00;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 769px) {
+            .main-wrapper {
+                padding: 20px 24px;
+                min-height: calc(100vh - 280px);
+            }
+
+            .signup-card {
+                min-height: 500px;
+                max-height: 600px;
+            }
+
+            .signup-form {
+                padding: 2rem 2.2rem;
+            }
+
+            .signup-visual {
+                padding: 1.8rem;
+            }
+
+            .signup-visual .visual-content img {
+                max-width: 160px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-wrapper {
+                padding: 16px;
+                min-height: auto;
+            }
+
+            .signup-wrapper {
+                padding: 0;
+            }
+
+            .signup-card {
+                flex-direction: column;
+                max-width: 440px;
+                margin: 0 auto;
+                border-radius: 16px;
+                min-height: auto;
+                max-height: none;
+                overflow: visible;
+            }
+
+            .signup-visual {
+                display: flex !important;
+                flex: none;
+                padding: 1.5rem;
+                min-height: 180px;
+                max-height: 220px;
+                width: 100%;
+                border-radius: 16px 16px 0 0;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .signup-visual::after {
+                width: 120px;
+                height: 120px;
+            }
+
+            .signup-visual .visual-content img {
+                max-width: 100px;
+                animation: floatImageMobile 3s ease-in-out infinite;
+            }
+
+            @keyframes floatImageMobile {
+                0%, 100% { transform: translateY(0px) scale(1); }
+                50% { transform: translateY(-8px) scale(1.02); }
+            }
+
+            .signup-visual .visual-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .signup-visual .visual-content p {
+                font-size: 0.8rem;
+            }
+
+            .signup-form {
+                padding: 1.8rem 1.5rem;
+                text-align: center;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .signup-badge {
+                align-self: center;
+            }
+
+            .signup-google-row {
+                justify-content: center;
+            }
+
+            .signup-divider {
+                justify-content: center;
+            }
+
+            .signup-heading {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+
+            .signup-subhead {
+                font-size: 0.85rem;
+                text-align: center;
+                margin-bottom: 18px;
+            }
+
+            .signup-terms-row {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-wrapper {
+                padding: 12px 10px;
+            }
+
+            .signup-card {
+                max-width: 100%;
+                border-radius: 12px;
+            }
+
+            .signup-visual {
+                min-height: 150px;
+                max-height: 180px;
+                padding: 1rem;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .signup-visual .visual-content img {
+                max-width: 80px;
+            }
+
+            .signup-visual .visual-content h3 {
+                font-size: 1rem;
+            }
+
+            .signup-visual .visual-content p {
+                font-size: 0.7rem;
+            }
+
+            .signup-visual::after {
+                width: 100px;
+                height: 100px;
+            }
+
+            .signup-form {
+                padding: 1.4rem 1rem;
+                border-radius: 0 0 12px 12px;
+            }
+
+            .signup-heading {
+                font-size: 1.4rem;
+            }
+
+            .signup-subhead {
+                font-size: 0.8rem;
+                margin-bottom: 16px;
+            }
+
+            .signup-google-row {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+                margin-bottom: 14px;
+            }
+
+            .signup-google-icon {
+                width: 1.4rem;
+                height: 1.4rem;
+            }
+
+            .signup-input-group input {
+                padding: 0.55rem 0.6rem 0.55rem 2.2rem;
+                font-size: 0.8rem;
+                border-radius: 8px;
+            }
+
+            .signup-input-group i {
+                left: 10px;
+                font-size: 0.8rem;
+            }
+
+            .signup-terms-row {
+                font-size: 0.75rem;
+                flex-wrap: wrap;
+                gap: 0.4rem;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .signup-submit-btn {
+                padding: 0.6rem 0.6rem;
+                font-size: 0.85rem;
+                border-radius: 8px;
+            }
+
+            .signup-divider {
+                margin: 0px 0 14px;
+            }
+
+            .signup-divider span {
+                font-size: 0.6rem;
+            }
+
+            .signup-badge {
+                font-size: 0.6rem;
+                padding: 3px 10px;
+                margin-bottom: 12px;
+            }
+
+            .signin-text {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f0f4f8; }
+        ::-webkit-scrollbar-thumb { background: #ff6b00; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e05a00; }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER PLACEHOLDER ===== -->
+    <div id="header-placeholder"></div>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <div class="main-wrapper">
+        <div class="signup-wrapper">
+            <div class="signup-card">
+
+                <!-- Left Column - Visual with Image -->
+                <div class="signup-visual">
+                    <div class="visual-content">
+                        <img src="car10.webp" alt="Car Parts Store" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fas fa-car" style="display:none; font-size:60px; color:#ff6b00; animation:floatImage 4s ease-in-out infinite;"></i>
+                        <h3>Car<span>Parts</span></h3>
+                        <p>Premium Auto Parts Since 2026</p>
+                    </div>
+                </div>
+
+                <!-- Right Column - Form -->
+                <div class="signup-form">
+                    <!-- Badge -->
+                    <div class="signup-badge">
+                        <i class="fas fa-user-plus"></i>
+                        Join Us
+                    </div>
+
+                    <h1 class="signup-heading">Create <span>Account</span></h1>
+                    <p class="signup-subhead">
+                        <i class="fas fa-arrow-right"></i> Join CarParts Store to shop premium auto parts &amp; track orders
+                    </p>
+
+                    <!-- Google Sign Up -->
+                    <div class="signup-google-row" id="googleSignupBtn">
+                        <span class="signup-google-icon">
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />
+                                <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z" />
+                                <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" />
+                                <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
+                            </svg>
+                        </span>
+                        <span>Continue with Google</span>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="signup-divider">
+                        <hr />
+                        <span>Or</span>
+                        <hr />
+                    </div>
+
+                    <!-- ===== FULL NAME FIELD + ERROR ===== -->
+                    <div class="signup-field">
+                        <div class="signup-input-group" id="nameGroup">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="fullName" placeholder="Enter your full name" required />
+                        </div>
+                        <div class="signup-error-msg" id="nameError">Please enter your full name (letters and spaces only).</div>
+                    </div>
+
+                    <!-- ===== EMAIL FIELD + ERROR ===== -->
+                    <div class="signup-field">
+                        <div class="signup-input-group" id="emailGroup">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" placeholder="Enter your email address" required />
+                        </div>
+                        <div class="signup-error-msg" id="emailError">Please enter a valid email address.</div>
+                    </div>
+
+                    <!-- ===== PASSWORD FIELD + ERROR ===== -->
+                    <div class="signup-field">
+                        <div class="signup-input-group" id="passwordGroup">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" placeholder="Create a password" required />
+                        </div>
+                        <div class="signup-error-msg" id="passwordError">Password must be at least 8 characters with 1 uppercase, 1 number &amp; 1 special character.</div>
+                    </div>
+
+                    <!-- ===== TERMS FIELD + ERROR (NOW ALSO WRAPPED) ===== -->
+                    <div class="signup-field">
+                        <div class="signup-terms-row">
+                            <input type="checkbox" id="termsCheck" />
+                            <label for="termsCheck">I agree to the <a href="404.html">Terms &amp; Conditions</a></label>
+                        </div>
+                        <div class="signup-error-msg" id="termsError">You must agree to the Terms &amp; Conditions.</div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="signup-btn-wrapper">
+                        <button class="signup-submit-btn" id="signupBtn">
+                            <i class="fas fa-arrow-right"></i> Sign Up
+                        </button>
+                    </div>
+
+                    <!-- Sign In Link -->
+                    <div class="signin-text">
+                        Already have an account? <a href="login.html" id="signinLink">Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER PLACEHOLDER ===== -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // =========================================
+        // HEADER & FOOTER LOADER
+        // =========================================
+        (function loadHeaderFooter() {
+            // Load Header
+            fetch('header.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Header not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    initHeader();
+                })
+                .catch(error => {
+                    console.error('Error loading header:', error);
+                    document.getElementById('header-placeholder').innerHTML = 
+                        '<div style="background:#0a0e1a; color:#ff6b00; padding:15px; text-align:center; font-weight:500; border-bottom:3px solid #ff6b00;">⚠️ Header failed to load</div>';
+                });
+
+            // Load Footer
+            fetch('footer.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Footer not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                    initFooter();
+                })
+                .catch(error => {
+                    console.error('Error loading footer:', error);
+                    document.getElementById('footer-placeholder').innerHTML = 
+                        '<div style="background:#0a0e1a; color:#a8b8d0; padding:20px; text-align:center; border-top:3px solid #ff6b00;">⚠️ Footer failed to load</div>';
+                });
+        })();
+
+        // =========================================
+        // HEADER INITIALIZATION
+        // =========================================
+        function initHeader() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (hamburger && mobileMenu) {
+                function toggleMenu() {
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+                    const expanded = mobileMenu.classList.contains('active');
+                    hamburger.setAttribute('aria-expanded', expanded);
+                }
+
+                function closeMenu() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+
+                hamburger.addEventListener('click', toggleMenu);
+
+                document.addEventListener('click', function(e) {
+                    if (mobileMenu.classList.contains('active')) {
+                        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                            closeMenu();
+                        }
+                    }
+                });
+
+                window.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') closeMenu();
+                });
+
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) closeMenu();
+                });
+
+                document.querySelectorAll('.mobile-nav a, .mobile-actions a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        closeMenu();
+                    });
+                });
+            }
+
+            document.querySelectorAll('.nav-links a, .btn-outline, .btn-primary').forEach(link => {
+                if (link.getAttribute('href') === 'signup.html') {
+                    link.classList.add('active');
+                }
+            });
+
+            console.log('✅ Header initialized');
+        }
+
+        // =========================================
+        // FOOTER INITIALIZATION
+        // =========================================
+        function initFooter() {
+            console.log('✅ Footer initialized');
+        }
+
+        // =========================================
+        // SIGNUP FORM VALIDATION
+        // =========================================
+        (function() {
+            const fullNameInput = document.getElementById('fullName');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const termsCheck = document.getElementById('termsCheck');
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const termsError = document.getElementById('termsError');
+            const signupBtn = document.getElementById('signupBtn');
+            const googleBtn = document.getElementById('googleSignupBtn');
+
+            // Clear errors on input
+            fullNameInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^A-Za-z\s]/g, '');
+                if (this.value.trim() !== '') {
+                    nameError.classList.remove('show');
+                    document.getElementById('nameGroup').classList.remove('input-error');
+                }
+            });
+
+            emailInput.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    emailError.classList.remove('show');
+                    document.getElementById('emailGroup').classList.remove('input-error');
+                }
+            });
+
+            passwordInput.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    passwordError.classList.remove('show');
+                    document.getElementById('passwordGroup').classList.remove('input-error');
+                }
+            });
+
+            termsCheck.addEventListener('change', function() {
+                termsError.classList.remove('show');
+            });
+
+            function validateEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            function validatePassword(pwd) {
+                const minLength = pwd.length >= 8;
+                const hasUpper = /[A-Z]/.test(pwd);
+                const hasNumber = /[0-9]/.test(pwd);
+                const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};:'"\\|,.<>\/?]/.test(pwd);
+                return minLength && hasUpper && hasNumber && hasSpecial;
+            }
+
+            signupBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                let isValid = true;
+
+                const fullName = fullNameInput.value.trim();
+                if (!fullName || fullName.length < 2) {
+                    nameError.textContent = 'Please enter your full name (letters and spaces only, at least 2 characters).';
+                    nameError.classList.add('show');
+                    document.getElementById('nameGroup').classList.add('input-error');
+                    isValid = false;
+                } else {
+                    nameError.classList.remove('show');
+                    document.getElementById('nameGroup').classList.remove('input-error');
+                }
+
+                const email = emailInput.value.trim();
+                if (!email || !validateEmail(email)) {
+                    emailError.textContent = 'Please enter a valid email address.';
+                    emailError.classList.add('show');
+                    document.getElementById('emailGroup').classList.add('input-error');
+                    isValid = false;
+                } else {
+                    emailError.classList.remove('show');
+                    document.getElementById('emailGroup').classList.remove('input-error');
+                }
+
+                const pwd = passwordInput.value.trim();
+                if (!pwd || !validatePassword(pwd)) {
+                    passwordError.textContent = 'Password must be at least 8 characters with 1 uppercase, 1 number & 1 special character.';
+                    passwordError.classList.add('show');
+                    document.getElementById('passwordGroup').classList.add('input-error');
+                    isValid = false;
+                } else {
+                    passwordError.classList.remove('show');
+                    document.getElementById('passwordGroup').classList.remove('input-error');
+                }
+
+                if (!termsCheck.checked) {
+                    termsError.textContent = 'You must agree to the Terms & Conditions.';
+                    termsError.classList.add('show');
+                    isValid = false;
+                } else {
+                    termsError.classList.remove('show');
+                }
+
+                if (isValid) {
+                    window.location.href = 'login.html';
+                }
+            });
+
+            // Google Sign Up
+            googleBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = '404.html';
+            });
+
+            // Enter key support
+            document.querySelectorAll('.signup-input-group input').forEach(el => {
+                el.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        signupBtn.click();
+                    }
+                });
+            });
+
+            // Sign in link
+            document.getElementById('signinLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'login.html';
+            });
+
+            console.log('✅ Sign Up page ready!');
+            console.log('🏎️ Car Parts Store - Racing Orange & Dark Navy');
+            console.log('🔧 Bug fix: Every error message (Name, Email, Password, Terms) is wrapped with its own field');
+        })();
+    </script>
+
+</body>
+</html>

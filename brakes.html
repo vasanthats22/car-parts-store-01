@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>Car Parts Store - Brake Systems</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 100px;
+        }
+
+        /* ===== HEADER PLACEHOLDER ===== */
+        #header-placeholder {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        /* ===== FOOTER PLACEHOLDER ===== */
+        #footer-placeholder {
+            width: 100%;
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.88), rgba(10, 14, 26, 0.75)), url('cp010.webp');
+            background-size: cover;
+            background-position: center;
+            padding: 70px 24px;
+            text-align: center;
+            min-height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b00, #ff8833, #ff6b00);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content h1 span {
+            color: #ff6b00;
+        }
+
+        .hero-content p {
+            color: #c8d0dc;
+            font-size: 1.15rem;
+            margin-top: 14px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 107, 0, 0.2);
+            color: #ff6b00;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            transition: 0.3s;
+        }
+
+        .hero-badge:hover {
+            background: rgba(255, 107, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .hero-stat .number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ff6b00;
+        }
+
+        .hero-stat .label {
+            font-size: 0.8rem;
+            color: #a8b8d0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== MAIN WRAPPER ===== */
+        .main-wrapper {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+            width: 100%;
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0a0e1a;
+        }
+
+        .section-title h2 span {
+            color: #ff6b00;
+        }
+
+        .section-title p {
+            color: #6a7a8a;
+            font-size: 1rem;
+            margin-top: 8px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== SECTION 2: BRAKE TYPES - TABS ===== */
+        .brake-tabs-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 50px;
+            transition: box-shadow 0.3s;
+        }
+
+        .brake-tabs-section:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 28px;
+            border: 2px solid #e8e8e8;
+            border-radius: 50px;
+            background: transparent;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0a0e1a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .tab-btn i {
+            margin-right: 8px;
+            color: #6a7a8a;
+            transition: 0.3s;
+        }
+
+        .tab-btn:hover {
+            border-color: #ff6b00;
+            color: #ff6b00;
+            transform: translateY(-2px);
+        }
+
+        .tab-btn:hover i {
+            color: #ff6b00;
+        }
+
+        .tab-btn.active {
+            background: #ff6b00;
+            border-color: #ff6b00;
+            color: #0a0e1a;
+        }
+
+        .tab-btn.active i {
+            color: #0a0e1a;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-content .tab-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .tab-item {
+            padding: 20px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .tab-item:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b00;
+            box-shadow: 0 12px 30px rgba(255, 107, 0, 0.1);
+        }
+
+        .tab-item .icon {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 10px;
+        }
+
+        .tab-item .tab-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: transform 0.4s;
+        }
+
+        .tab-item:hover .tab-img {
+            transform: scale(1.05);
+        }
+
+        .tab-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0a0e1a;
+        }
+
+        .tab-item p {
+            font-size: 0.8rem;
+            color: #6a7a8a;
+            margin: 6px 0 12px;
+        }
+
+        .tab-item .price-tag {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ff6b00;
+        }
+
+        /* ===== SECTION 3: COMPARISON TABLE ===== */
+        .comparison-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 50px;
+            transition: box-shadow 0.3s;
+            overflow-x: auto;
+        }
+
+        .comparison-section:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 14px 16px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .comparison-table th {
+            font-weight: 700;
+            color: #0a0e1a;
+            background: #f8f9fa;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th:first-child {
+            text-align: left;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #0a0e1a;
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(255, 107, 0, 0.03);
+        }
+
+        .comparison-table .check {
+            color: #2e7d32;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table .cross {
+            color: #c62828;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table .highlight {
+            color: #ff6b00;
+            font-weight: 700;
+        }
+
+        /* ===== SECTION 4: FEATURED PRODUCTS ===== */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .featured-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            transition: all 0.4s ease;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b00;
+            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.1);
+        }
+
+        .featured-card .img-wrapper {
+            width: 120px;
+            height: 120px;
+            border-radius: 16px;
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: 0.4s;
+        }
+
+        .featured-card:hover .img-wrapper {
+            transform: scale(1.05);
+        }
+
+        .featured-card .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-card .info h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0a0e1a;
+            transition: color 0.3s;
+        }
+
+        .featured-card:hover .info h3 {
+            color: #ff6b00;
+        }
+
+        .featured-card .info p {
+            color: #6a7a8a;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin: 6px 0;
+        }
+
+        .featured-card .info .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ff6b00;
+        }
+
+        .featured-card .info .rating {
+            color: #f5a623;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .featured-card .badge {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-bottom: 6px;
+        }
+
+        .badge-seller {
+            background: #ff6b00;
+            color: #0a0e1a;
+        }
+
+        .badge-new {
+            background: #2e7d32;
+            color: #ffffff;
+        }
+
+        /* ===== SECTION 5: WHY BRAKES ===== */
+        .why-brakes-section {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.05), rgba(10, 14, 26, 0.02));
+            border-radius: 20px;
+            padding: 50px 40px;
+            border: 1px solid rgba(255, 107, 0, 0.1);
+            margin-bottom: 50px;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .why-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 16px;
+            background: #ffffff;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+
+        .why-item:hover {
+            border-color: #ff6b00;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(255, 107, 0, 0.08);
+        }
+
+        .why-item .icon {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 10px;
+        }
+
+        .why-item .why-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: transform 0.4s;
+        }
+
+        .why-item:hover .why-img {
+            transform: scale(1.05);
+        }
+
+        .why-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0a0e1a;
+        }
+
+        .why-item p {
+            font-size: 0.85rem;
+            color: #6a7a8a;
+            margin-top: 6px;
+        }
+
+        /* ===== SECTION 6: INSTALLATION STEPS ===== */
+        .steps-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 50px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: 20px 16px;
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .step-item:hover {
+            background: rgba(255, 107, 0, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .step-item .step-number {
+            width: 50px;
+            height: 50px;
+            background: #ff6b00;
+            color: #0a0e1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 0 auto 12px;
+            transition: 0.3s;
+        }
+
+        .step-item:hover .step-number {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .step-item .step-img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: transform 0.4s;
+        }
+
+        .step-item:hover .step-img {
+            transform: scale(1.05);
+        }
+
+        .step-item h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0a0e1a;
+        }
+
+        .step-item p {
+            font-size: 0.8rem;
+            color: #6a7a8a;
+            margin-top: 4px;
+        }
+
+        /* ===== SECTION 7: BRAND PARTNERS ===== */
+        .brand-partners-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .brand-partners-section:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .brand-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .brand-logo-item {
+            text-align: center;
+            transition: all 0.4s ease;
+            padding: 20px;
+            border-radius: 16px;
+            min-width: 120px;
+        }
+
+        .brand-logo-item:hover {
+            transform: translateY(-8px) scale(1.05);
+            background: rgba(255, 107, 0, 0.05);
+        }
+
+        .brand-logo-item .brand-icon {
+            font-size: 3rem;
+            color: #0a0e1a;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .brand-logo-item:hover .brand-icon {
+            color: #ff6b00;
+            opacity: 1;
+        }
+
+        .brand-logo-item .brand-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0a0e1a;
+            margin-top: 8px;
+        }
+
+        /* ===== SECTION 8: TESTIMONIALS ===== */
+        .testimonials-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 50px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-item {
+            padding: 24px;
+            background: #f8f9fa;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-8px);
+            border-color: #ff6b00;
+            box-shadow: 0 12px 35px rgba(255, 107, 0, 0.1);
+            background: #ffffff;
+        }
+
+        .testimonial-item .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+            border: 3px solid transparent;
+            transition: 0.4s;
+        }
+
+        .testimonial-item:hover .avatar {
+            border-color: #ff6b00;
+        }
+
+        .testimonial-item .stars {
+            color: #f5a623;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .testimonial-item blockquote {
+            color: #0a0e1a;
+            font-size: 0.9rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .testimonial-item .name {
+            font-weight: 700;
+            color: #0a0e1a;
+            margin-top: 10px;
+        }
+
+        .testimonial-item .role {
+            font-size: 0.75rem;
+            color: #6a7a8a;
+        }
+
+        /* ===== SECTION 9: BRAKE CARE TIPS ===== */
+        .care-tips-section {
+            background: linear-gradient(135deg, #0a0e1a, #1a2a40);
+            border-radius: 20px;
+            padding: 50px 40px;
+            border: 1px solid rgba(255, 107, 0, 0.15);
+            margin-bottom: 50px;
+        }
+
+        .care-tips-section .section-title h2 {
+            color: #ffffff;
+        }
+
+        .care-tips-section .section-title p {
+            color: #a8b8d0;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .tip-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tip-item:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b00;
+            background: rgba(255, 107, 0, 0.08);
+        }
+
+        .tip-item .tip-icon {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 12px;
+        }
+
+        .tip-item .tip-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: transform 0.4s;
+        }
+
+        .tip-item:hover .tip-img {
+            transform: scale(1.05);
+        }
+
+        .tip-item h4 {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .tip-item p {
+            color: #a8b8d0;
+            font-size: 0.85rem;
+            margin-top: 6px;
+            line-height: 1.6;
+        }
+
+        /* ===== SECTION 10: NEWSLETTER ===== */
+        .newsletter-section {
+            background: linear-gradient(135deg, #0a0e1a, #1a2a40);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 107, 0, 0.15);
+            margin-bottom: 0;
+        }
+
+        .newsletter-section h2 {
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .newsletter-section h2 span {
+            color: #ff6b00;
+        }
+
+        .newsletter-section p {
+            color: #a8b8d0;
+            font-size: 1rem;
+            margin-top: 8px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 20px auto 0;
+            gap: 12px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #6a7a8a;
+        }
+
+        .newsletter-form input:focus {
+            border-color: #ff6b00;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            background: #ff6b00;
+            border: 2px solid #ff6b00;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #0a0e1a;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn i {
+            color: #0a0e1a;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #ff8833;
+            border-color: #ff8833;
+            color: #0a0e1a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.35);
+        }
+
+        .btn:hover i {
+            transform: translateX(4px);
+        }
+
+        .btn-white {
+            background: #ffffff;
+            border: 2px solid #ffffff;
+            color: #0a0e1a;
+        }
+
+        .btn-white i {
+            color: #0a0e1a;
+        }
+
+        .btn-white:hover {
+            background: #f0f0f0;
+            border-color: #f0f0f0;
+        }
+
+        .btn-center {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1100px) {
+            body {
+                padding-top: 160px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .tab-content .tab-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .tips-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-stats {
+                gap: 20px;
+            }
+            .hero-stat .number {
+                font-size: 1.8rem;
+            }
+            .brand-logos {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 180px;
+            }
+            .hero-section {
+                padding: 40px 20px;
+                min-height: 300px;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .hero-stats {
+                gap: 16px;
+            }
+            .hero-stat .number {
+                font-size: 1.5rem;
+            }
+            .tab-content .tab-grid {
+                grid-template-columns: 1fr;
+            }
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .featured-card .img-wrapper {
+                width: 100%;
+                height: 180px;
+            }
+            .brake-tabs-section {
+                padding: 24px 16px;
+            }
+            .comparison-section {
+                padding: 24px 16px;
+            }
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+            .newsletter-section {
+                padding: 30px 20px;
+            }
+            .tabs {
+                gap: 6px;
+            }
+            .tab-btn {
+                padding: 8px 16px;
+                font-size: 0.75rem;
+            }
+            .brand-logos {
+                gap: 12px;
+            }
+            .brand-logo-item {
+                min-width: 80px;
+                padding: 12px;
+            }
+            .brand-logo-item .brand-icon {
+                font-size: 2rem;
+            }
+            .care-tips-section {
+                padding: 30px 20px;
+            }
+            .why-brakes-section {
+                padding: 30px 20px;
+            }
+            .steps-section {
+                padding: 24px 16px;
+            }
+            .testimonials-section {
+                padding: 24px 16px;
+            }
+            .brand-partners-section {
+                padding: 24px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 200px;
+            }
+            .main-wrapper {
+                padding: 20px 12px 40px;
+            }
+            .hero-content h1 {
+                font-size: 1.6rem;
+            }
+            .hero-section {
+                padding: 30px 16px;
+                min-height: 250px;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title h2 {
+                font-size: 1.4rem;
+            }
+            .tab-btn {
+                padding: 6px 12px;
+                font-size: 0.7rem;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px 12px;
+                font-size: 0.8rem;
+            }
+            .btn {
+                padding: 8px 18px;
+                font-size: 0.75rem;
+            }
+            .featured-card {
+                padding: 20px;
+            }
+            .newsletter-section h2 {
+                font-size: 1.4rem;
+            }
+            .brand-logo-item {
+                min-width: 60px;
+                padding: 8px;
+            }
+            .brand-logo-item .brand-icon {
+                font-size: 1.5rem;
+            }
+            .brand-logo-item .brand-name {
+                font-size: 0.6rem;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0f2f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff6b00;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e05a00;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER PLACEHOLDER ===== -->
+    <div id="header-placeholder"></div>
+
+    <!-- ===== SECTION 1: HERO ===== -->
+    <section class="hero-section" data-aos="fade-in" data-aos-duration="1000">
+        <div class="hero-content">
+            <div class="hero-badge" data-aos="fade-down" data-aos-delay="200">
+                <i class="fas fa-stop-circle"></i> Premium Brake Systems
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="300">Stop with <span>Confidence</span></h1>
+            <p data-aos="fade-up" data-aos-delay="400">High-performance brake systems designed for maximum stopping power, safety, and reliability in every driving condition.</p>
+            <div class="hero-stats" data-aos="fade-up" data-aos-delay="500">
+                <div class="hero-stat">
+                    <div class="number">12,000+</div>
+                    <div class="label">Happy Customers</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">98%</div>
+                    <div class="label">Satisfaction Rate</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">50+</div>
+                    <div class="label">Brands Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <div class="main-wrapper">
+
+        <!-- ===== SECTION 2: BRAKE TYPES (TABS) ===== -->
+        <div class="brake-tabs-section" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Choose Your <span>Brake System</span></h2>
+                <p>Different driving needs require different brake solutions. Find the perfect match for your vehicle.</p>
+            </div>
+
+            <div class="tabs" data-aos="fade-up" data-aos-delay="100">
+                <button class="tab-btn active" data-tab="tab1"><i class="fas fa-circle"></i> Disc Brakes</button>
+                <button class="tab-btn" data-tab="tab2"><i class="fas fa-circle"></i> Drum Brakes</button>
+                <button class="tab-btn" data-tab="tab3"><i class="fas fa-circle"></i> Performance</button>
+                <button class="tab-btn" data-tab="tab4"><i class="fas fa-circle"></i> Ceramic</button>
+            </div>
+
+            <div class="tab-content active" id="tab1">
+                <div class="tab-grid">
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="100">
+                        <img src="cp09.webp" alt="Standard Disc Brakes" class="tab-img">
+                        <h4>Standard Disc Brakes</h4>
+                        <p>Reliable stopping power for everyday driving</p>
+                        <div class="price-tag">$249.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="200">
+                        <img src="cp08.webp" alt="Vented Disc Brakes" class="tab-img">
+                        <h4>Vented Disc Brakes</h4>
+                        <p>Enhanced cooling for better performance</p>
+                        <div class="price-tag">$349.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="300">
+                        <img src="cp07.webp" alt="Drilled & Slotted" class="tab-img">
+                        <h4>Drilled & Slotted</h4>
+                        <p>Maximum performance & heat dissipation</p>
+                        <div class="price-tag">$449.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab2">
+                <div class="tab-grid">
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="100">
+                        <img src="cp06.webp" alt="Rear Drum Brakes" class="tab-img">
+                        <h4>Rear Drum Brakes</h4>
+                        <p>Durable and cost-effective solution</p>
+                        <div class="price-tag">$199.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="200">
+                        <img src="cp05.webp" alt="Heavy-Duty Drums" class="tab-img">
+                        <h4>Heavy-Duty Drums</h4>
+                        <p>For trucks and commercial vehicles</p>
+                        <div class="price-tag">$299.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="300">
+                        <img src="cp04.webp" alt="Brake Drum Kit" class="tab-img">
+                        <h4>Brake Drum Kit</h4>
+                        <p>Complete drum brake replacement kit</p>
+                        <div class="price-tag">$379.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab3">
+                <div class="tab-grid">
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="100">
+                        <img src="cp03.webp" alt="Sport Brake Kit" class="tab-img">
+                        <h4>Sport Brake Kit</h4>
+                        <p>High-performance for spirited driving</p>
+                        <div class="price-tag">$599.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="200">
+                        <img src="cp02.webp" alt="Racing Brakes" class="tab-img">
+                        <h4>Racing Brakes</h4>
+                        <p>Track-ready performance braking</p>
+                        <div class="price-tag">$899.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="300">
+                        <img src="cp01.webp" alt="Big Brake Kit" class="tab-img">
+                        <h4>Big Brake Kit</h4>
+                        <p>Massive stopping power for show cars</p>
+                        <div class="price-tag">$1,299.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab4">
+                <div class="tab-grid">
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="100">
+                        <img src="cp010.webp" alt="Ceramic Brake Pads" class="tab-img">
+                        <h4>Ceramic Brake Pads</h4>
+                        <p>Low dust, quiet, and long-lasting</p>
+                        <div class="price-tag">$149.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="200">
+                        <img src="cp09.webp" alt="Ceramic Rotors" class="tab-img">
+                        <h4>Ceramic Rotors</h4>
+                        <p>Premium ceramic brake rotors</p>
+                        <div class="price-tag">$399.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                    <div class="tab-item" data-aos="fade-up" data-aos-delay="300">
+                        <img src="cp08.webp" alt="Carbon-Ceramic" class="tab-img">
+                        <h4>Carbon-Ceramic</h4>
+                        <p>Ultimate performance and durability</p>
+                        <div class="price-tag">$2,499.99</div>
+                        <br>
+                        <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 3: COMPARISON TABLE ===== -->
+        <div class="comparison-section" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Brake System <span>Comparison</span></h2>
+                <p>Compare different brake types to find the best fit for your driving style</p>
+            </div>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Disc Brakes</th>
+                            <th>Drum Brakes</th>
+                            <th>Performance</th>
+                            <th>Ceramic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Stopping Power</td>
+                            <td><span class="highlight">Excellent</span></td>
+                            <td>Good</td>
+                            <td><span class="highlight">Outstanding</span></td>
+                            <td>Excellent</td>
+                        </tr>
+                        <tr>
+                            <td>Heat Dissipation</td>
+                            <td><span class="highlight">Good</span></td>
+                            <td>Fair</td>
+                            <td><span class="highlight">Excellent</span></td>
+                            <td><span class="highlight">Excellent</span></td>
+                        </tr>
+                        <tr>
+                            <td>Dust Production</td>
+                            <td>Moderate</td>
+                            <td>Low</td>
+                            <td>High</td>
+                            <td><span class="highlight">Very Low</span></td>
+                        </tr>
+                        <tr>
+                            <td>Durability</td>
+                            <td>Good</td>
+                            <td>Good</td>
+                            <td>Moderate</td>
+                            <td><span class="highlight">Excellent</span></td>
+                        </tr>
+                        <tr>
+                            <td>Noise Level</td>
+                            <td>Moderate</td>
+                            <td><span class="highlight">Low</span></td>
+                            <td>Moderate</td>
+                            <td><span class="highlight">Very Low</span></td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td>$$</td>
+                            <td>$</td>
+                            <td>$$$</td>
+                            <td>$$$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 4: FEATURED PRODUCTS ===== -->
+        <div class="section-title" data-aos="fade-up">
+            <h2>Featured <span>Brake Systems</span></h2>
+            <p>Top-rated brake systems trusted by professionals</p>
+        </div>
+
+        <div class="featured-grid">
+            <div class="featured-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="img-wrapper">
+                    <img src="cp07.webp" alt="Sport Brakes">
+                </div>
+                <div class="info">
+                    <span class="badge badge-seller">Best Seller</span>
+                    <h3>Sport Brake Kit</h3>
+                    <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0</div>
+                    <p>High-performance brake kit with drilled & slotted rotors and ceramic pads.</p>
+                    <div class="price">$599.99</div>
+                    <br>
+                    <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+
+            <div class="featured-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="img-wrapper">
+                    <img src="cp06.webp" alt="Ceramic Brakes">
+                </div>
+                <div class="info">
+                    <span class="badge badge-new">New</span>
+                    <h3>Ceramic Brake System</h3>
+                    <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.9</div>
+                    <p>Ultra-quiet ceramic brakes with premium rotors. Zero dust, maximum performance.</p>
+                    <div class="price">$399.99</div>
+                    <br>
+                    <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 5: WHY BRAKES ===== -->
+        <div class="why-brakes-section" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Why Choose Our <span>Brake Systems</span></h2>
+                <p>Quality, safety, and performance - the three pillars of our brake products</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-item" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="car1.webp" alt="Safety" class="why-img">
+                    <h4>Superior Safety</h4>
+                    <p>All brakes meet or exceed OEM safety standards with rigorous testing.</p>
+                </div>
+                <div class="why-item" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="car2.webp" alt="Performance" class="why-img">
+                    <h4>Maximum Performance</h4>
+                    <p>Engineered for optimal stopping power in all driving conditions.</p>
+                </div>
+                <div class="why-item" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="car3.webp" alt="Quality" class="why-img">
+                    <h4>Quality Assured</h4>
+                    <p>Manufactured with premium materials and backed by warranty.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 6: INSTALLATION STEPS ===== -->
+        <div class="steps-section" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Easy <span>Installation</span></h2>
+                <p>Install your new brake system in 4 simple steps</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <img src="car4.webp" alt="Remove old brakes" class="step-img">
+                    <h4>Remove Old Brakes</h4>
+                    <p>Carefully remove the old brake components</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <img src="car5.webp" alt="Install new parts" class="step-img">
+                    <h4>Install New Parts</h4>
+                    <p>Mount the new rotors and calipers</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <img src="car6.webp" alt="Bleed the system" class="step-img">
+                    <h4>Bleed the System</h4>
+                    <p>Remove air from brake lines for proper function</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">4</div>
+                    <img src="car7.webp" alt="Test brakes" class="step-img">
+                    <h4>Test & Bed In</h4>
+                    <p>Gradually bed in the new brakes for optimal performance</p>
+                </div>
+            </div>
+            <div class="btn-center">
+                <a href="404.html" class="btn"><i class="fas fa-play"></i> Watch Installation Video</a>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 7: BRAND PARTNERS (NEW) ===== -->
+        <div class="brand-partners-section" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Our Trusted <span>Brand Partners</span></h2>
+                <p>We partner with the world's leading brake manufacturers</p>
+            </div>
+            <div class="brand-logos">
+                <div class="brand-logo-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="brand-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="brand-name">Brembo</div>
+                </div>
+                <div class="brand-logo-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="brand-icon"><i class="fas fa-circle"></i></div>
+                    <div class="brand-name">Akebono</div>
+                </div>
+                <div class="brand-logo-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="brand-icon"><i class="fas fa-cog"></i></div>
+                    <div class="brand-name">EBC</div>
+                </div>
+                <div class="brand-logo-item" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="brand-icon"><i class="fas fa-gem"></i></div>
+                    <div class="brand-name">Power Stop</div>
+                </div>
+                <div class="brand-logo-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="brand-icon"><i class="fas fa-car"></i></div>
+                    <div class="brand-name">Centric</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 8: TESTIMONIALS ===== -->
+        <div class="testimonials-section" data-aos="fade-up">
+            <div class="section-title">
+                <h2>What Our <span>Customers Say</span></h2>
+                <p>Real reviews from drivers who upgraded their brakes</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-item" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="cps1.webp" alt="Customer" class="avatar">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Incredible stopping power! My car feels completely different. Best upgrade I've made."</blockquote>
+                    <div class="name">James Miller</div>
+                    <div class="role">Track Day Enthusiast</div>
+                </div>
+                <div class="testimonial-item" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="cps2.webp" alt="Customer" class="avatar">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"The ceramic brakes are so quiet and smooth. No more brake dust on my wheels!"</blockquote>
+                    <div class="name">Amanda Lee</div>
+                    <div class="role">Daily Commuter</div>
+                </div>
+                <div class="testimonial-item" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="cps3.webp" alt="Customer" class="avatar">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Perfect fit and easy installation. My truck stops on a dime now. Highly recommend!"</blockquote>
+                    <div class="name">Robert Chen</div>
+                    <div class="role">Truck Owner</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 9: BRAKE CARE TIPS (NEW) ===== -->
+        <div class="care-tips-section" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Brake Care <span>Tips</span></h2>
+                <p>Expert advice to keep your brakes performing at their best</p>
+            </div>
+            <div class="tips-grid">
+                <div class="tip-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="cps4.webp" alt="Regular Inspection" class="tip-img">
+                    <h4>Regular Inspection</h4>
+                    <p>Check your brake pads and rotors every 10,000 miles for wear and tear.</p>
+                </div>
+                <div class="tip-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="cps5.webp" alt="Brake Fluid" class="tip-img">
+                    <h4>Brake Fluid Maintenance</h4>
+                    <p>Replace brake fluid every 2 years to prevent moisture contamination and corrosion.</p>
+                </div>
+                <div class="tip-item" data-aos="fade-up" data-aos-delay="300">
+                    <img src="cps6.webp" alt="Bedding In" class="tip-img">
+                    <h4>Proper Bedding In</h4>
+                    <p>Follow the bedding-in procedure for new brakes to ensure optimal performance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 10: NEWSLETTER ===== -->
+        <div class="newsletter-section" data-aos="fade-up">
+            <h2>Stay <span>Updated</span></h2>
+            <p>Subscribe for brake care tips, new product alerts, and exclusive offers.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); window.location.href='404.html';">
+                <input type="email" placeholder="Enter your email address" required />
+                <button type="submit" class="btn btn-white"><i class="fas fa-paper-plane"></i> Subscribe</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- ===== FOOTER PLACEHOLDER ===== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- ===== AOS SCRIPTS ===== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+    <script>
+        // =========================================
+        // HEADER & FOOTER LOADER
+        // =========================================
+        (function loadHeaderFooter() {
+            fetch('header.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Header not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    initHeader();
+                })
+                .catch(error => {
+                    console.error('Error loading header:', error);
+                    document.getElementById('header-placeholder').innerHTML =
+                        '<div style="background:#0a0e1a; color:#ff6b00; padding:15px; text-align:center; font-weight:500; border-bottom:3px solid #ff6b00;">⚠️ Header failed to load</div>';
+                });
+
+            fetch('footer.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Footer not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                    initFooter();
+                })
+                .catch(error => {
+                    console.error('Error loading footer:', error);
+                    document.getElementById('footer-placeholder').innerHTML =
+                        '<div style="background:#0a0e1a; color:#a8b8d0; padding:20px; text-align:center; border-top:3px solid #ff6b00;">⚠️ Footer failed to load</div>';
+                });
+        })();
+
+        // =========================================
+        // HEADER INITIALIZATION
+        // =========================================
+        function initHeader() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (hamburger && mobileMenu) {
+                function toggleMenu() {
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+                    const expanded = mobileMenu.classList.contains('active');
+                    hamburger.setAttribute('aria-expanded', expanded);
+                }
+
+                function closeMenu() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+
+                hamburger.addEventListener('click', toggleMenu);
+
+                document.addEventListener('click', function(e) {
+                    if (mobileMenu.classList.contains('active')) {
+                        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                            closeMenu();
+                        }
+                    }
+                });
+
+                window.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') closeMenu();
+                });
+
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) closeMenu();
+                });
+
+                document.querySelectorAll('.mobile-nav-link, .mobile-action-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        closeMenu();
+                    });
+                });
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === 'brakes.html') {
+                    link.classList.add('active');
+                }
+            });
+
+            console.log('✅ Header initialized');
+        }
+
+        // =========================================
+        // FOOTER INITIALIZATION
+        // =========================================
+        function initFooter() {
+            console.log('✅ Footer initialized');
+        }
+
+        // =========================================
+        // TAB SYSTEM
+        // =========================================
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // =========================================
+        // AOS INITIALIZATION
+        // =========================================
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 80,
+            easing: 'ease-out-cubic'
+        });
+
+        console.log('🚗 Car Parts Store | Brakes Page Loaded');
+        console.log('🛑 10 sections with unique design, images & tab system!');
+    </script>
+
+</body>
+</html>

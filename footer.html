@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>Car Parts Store - Footer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== FOOTER — Same as Navbar (Dark Navy + Racing Orange) ===== */
+        .footer {
+            background: linear-gradient(135deg, #0a0e1a 0%, #141e30 50%, #1a2a40 100%);
+            border-top: 3px solid #ff6b00;
+            padding: 60px 32px 30px;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        /* ===== FOOTER COLUMN 1: Logo + Description ===== */
+        .footer-brand .logo-section {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .logo-img {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: #a8b8d0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 300px;
+            opacity: 0.85;
+        }
+
+        .footer-brand p .highlight {
+            color: #ffffff;
+            font-weight: 700;
+            opacity: 1;
+        }
+
+        .footer-brand p .highlight-orange {
+            color: #ff6b00;
+            font-weight: 700;
+        }
+
+        /* ===== SOCIAL ICONS (4 only) ===== */
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(168, 184, 208, 0.08);
+            color: #a8b8d0;
+            border: 1.5px solid rgba(255, 107, 0, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .social-icons a:hover {
+            background: #ff6b00;
+            border-color: #ff6b00;
+            color: #0a0e1a;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.3);
+        }
+
+        /* ===== FOOTER HEADINGS — FULL UNDERLINE ===== */
+        .footer-heading {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff6b00;
+            width: 100%;
+        }
+
+        /* ===== QUICK LINKS (Header links only) ===== */
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links li a {
+            color: #a8b8d0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.85;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .footer-links li a i {
+            font-size: 0.7rem;
+            color: #ff6b00;
+            transition: 0.2s;
+        }
+
+        .footer-links li a:hover {
+            color: #ffffff;
+            transform: translateX(6px);
+            opacity: 1;
+            border-bottom-color: #ff6b00;
+        }
+
+        .footer-links li a:hover i {
+            transform: translateX(4px);
+            color: #ff8833;
+        }
+
+        /* ===== CONTACT INFO (All redirect to 404.html) ===== */
+        .footer-contact {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #a8b8d0;
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        .footer-contact li i {
+            width: 20px;
+            color: #ff6b00;
+            font-size: 1rem;
+        }
+
+        .footer-contact li a {
+            color: #a8b8d0;
+            text-decoration: none;
+            transition: 0.2s;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .footer-contact li a:hover {
+            color: #ffffff;
+            border-bottom-color: #ff6b00;
+        }
+
+        /* ===== FOOTER BOTTOM ===== */
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(168, 184, 208, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom p {
+            color: #a8b8d0;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .footer-bottom p strong {
+            color: #ffffff;
+            opacity: 1;
+        }
+
+        .footer-bottom p .orange {
+            color: #ff6b00;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            color: #a8b8d0;
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            transition: 0.2s;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .footer-bottom-links a:hover {
+            opacity: 1;
+            color: #ff8833;
+            border-bottom-color: #ff6b00;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+
+            .footer-brand p {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer {
+                padding: 40px 20px 20px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-brand .logo-img {
+                height: 55px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .footer-bottom-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 14px;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .footer-brand .logo-img {
+                height: 65px;
+            }
+
+            .footer-heading {
+                font-size: 1rem;
+            }
+
+            .footer-links li a,
+            .footer-contact li {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- COLUMN 1: Logo + Description + Social Icons -->
+            <div class="footer-brand">
+                <a href="index.html" class="logo-section">
+                    <img src="Stacklyl2.webp" alt="Car Parts Store" class="logo-img">
+                </a>
+                <p>
+                    <span class="highlight">Premium auto parts</span> for every vehicle. 
+                    From <span class="highlight-orange">engines</span> to <span class="highlight-orange">brakes</span>, 
+                    we deliver quality and performance you can trust.
+                </p>
+                <div class="social-icons">
+                    <a href="404.html" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="404.html" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: Quick Links (Header links only) -->
+            <div>
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="engines.html"><i class="fas fa-chevron-right"></i> Engines</a></li>
+                    <li><a href="brakes.html"><i class="fas fa-chevron-right"></i> Brakes</a></li>
+                    <li><a href="exterior.html"><i class="fas fa-chevron-right"></i> Exterior</a></li>
+                    <li><a href="support.html"><i class="fas fa-chevron-right"></i> Support</a></li>
+                </ul>
+            </div>
+
+            <!-- COLUMN 3: Our Services (All redirect to 404.html) -->
+            <div>
+                <h3 class="footer-heading">Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="404.html"><i class="fas fa-chevron-right"></i> Engine Repair</a></li>
+                    <li><a href="404.html"><i class="fas fa-chevron-right"></i> Brake Service</a></li>
+                    <li><a href="404.html"><i class="fas fa-chevron-right"></i> Custom Exterior</a></li>
+                    <li><a href="404.html"><i class="fas fa-chevron-right"></i> Performance Tuning</a></li>
+                    <li><a href="404.html"><i class="fas fa-chevron-right"></i> Parts Installation</a></li>
+                </ul>
+            </div>
+
+            <!-- COLUMN 4: Contact Info (All redirect to 404.html) -->
+            <div>
+                <h3 class="footer-heading">Get In Touch</h3>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> <a href="404.html">123 Auto Lane, City, Country</a></li>
+                    <li><i class="fas fa-phone-alt"></i> <a href="404.html">+1 234 567 890</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="404.html">info@carpartsstore.com</a></li>
+                    <li><i class="fas fa-clock"></i> <a href="404.html">Mon - Sat: 9:00 AM - 8:00 PM</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- ====== FOOTER BOTTOM (All redirect to 404.html except logo) ====== -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 <strong>Car<span class="orange">Parts</span></strong>. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="404.html">Privacy Policy</a>
+                <a href="404.html">Terms of Service</a>
+                <a href="404.html">Cookie Policy</a>
+                <a href="404.html">Support</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

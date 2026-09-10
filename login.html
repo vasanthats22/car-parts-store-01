@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>Car Parts Store - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            overflow-x: hidden;
+            padding-top: 100px;
+        }
+
+        /* ===== HEADER PLACEHOLDER ===== */
+        #header-placeholder {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        /* ===== MAIN WRAPPER ===== */
+        .main-wrapper {
+            max-width: 1140px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: calc(100vh - 280px);
+        }
+
+        /* ===== FOOTER PLACEHOLDER ===== */
+        #footer-placeholder {
+            width: 100%;
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        /* ===== LOGIN FORM ===== */
+        .login-form-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* ===== BUG FIX: removed fixed max-height so the card grows with content ===== */
+        .login-form-card {
+            display: flex;
+            flex-direction: row;
+            max-width: 820px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(10, 14, 26, 0.15);
+            overflow: hidden;
+            border: 1px solid rgba(255, 107, 0, 0.08);
+            position: relative;
+            animation: slideUp 0.6s ease-out;
+            min-height: 480px;
+            /* max-height removed — card now expands with content */
+        }
+
+        .login-form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0a0e1a, #ff6b00, #0a0e1a);
+            background-size: 200% 100%;
+            animation: gradientMove 3s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== LEFT COLUMN - VISUAL ===== */
+        .login-form-visual {
+            display: flex;
+            flex: 0.8;
+            background: linear-gradient(135deg, #0a0e1a, #141e30, #1a2a40);
+            padding: 2rem;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            position: relative;
+        }
+
+        .login-form-visual::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .login-form-visual .visual-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .login-form-visual .visual-content img {
+            max-width: 180px;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 16px;
+            animation: floatImage 4s ease-in-out infinite;
+            border-radius: 12px;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 0, 0.1));
+        }
+
+        @keyframes floatImage {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-12px) scale(1.02); }
+        }
+
+        .login-form-visual .visual-content h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .login-form-visual .visual-content h3 span {
+            color: #ff6b00;
+        }
+
+        .login-form-visual .visual-content p {
+            font-size: 0.85rem;
+            color: #a8b8d0;
+            margin-top: 4px;
+        }
+
+        /* ===== RIGHT COLUMN - FORM ===== */
+        /* ===== BUG FIX: removed overflow-y so content isn't clipped/scrollbar ===== */
+        .login-form-content {
+            flex: 1.2;
+            padding: 2.2rem 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #ffffff;
+            /* overflow-y: auto;  ← removed to prevent internal scrollbar & clipping */
+        }
+
+        .login-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 107, 0, 0.12);
+            color: #0a0e1a;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            width: fit-content;
+        }
+
+        .login-badge i {
+            color: #ff6b00;
+            font-size: 0.7rem;
+        }
+
+        .login-form-heading {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #0a0e1a;
+            margin-bottom: 4px;
+        }
+
+        .login-form-heading span {
+            color: #ff6b00;
+        }
+
+        .login-form-subhead {
+            font-size: 0.85rem;
+            color: #6a7a8a;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .login-form-subhead i {
+            color: #ff6b00;
+            margin-right: 4px;
+        }
+
+        .login-google-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 0.6rem;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #0a0e1a;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+
+        .login-google-row:hover {
+            border-color: #ff6b00;
+            background: rgba(255, 107, 0, 0.04);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(10, 14, 26, 0.06);
+        }
+
+        .login-google-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.6rem;
+            height: 1.6rem;
+            flex-shrink: 0;
+        }
+        .login-google-icon svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .login-divider {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin: 2px 0 16px;
+        }
+        .login-divider hr {
+            flex: 1;
+            border: none;
+            height: 1px;
+            background: #e8e8e8;
+        }
+        .login-divider span {
+            color: #7a8a8a;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* ===== BUG FIX: FIELD WRAPPER ===== */
+        .login-field {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .login-input-group {
+            position: relative;
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        .login-input-group i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7a8a8a;
+            font-size: 0.85rem;
+            width: 1.1rem;
+            text-align: center;
+            pointer-events: none;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .login-input-group input,
+        .login-input-group select {
+            width: 100%;
+            padding: 0.65rem 0.8rem 0.65rem 2.6rem;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            outline: none;
+            color: #0a0e1a;
+            appearance: auto;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .login-input-group select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding-right: 2.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237a8a8a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 12px;
+        }
+
+        .login-input-group select::-ms-expand {
+            display: none;
+        }
+
+        .login-input-group input:focus,
+        .login-input-group select:focus {
+            border-color: #ff6b00;
+            box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.1);
+        }
+
+        .login-input-group input:focus + i,
+        .login-input-group select:focus + i {
+            color: #ff6b00;
+        }
+
+        .login-input-group input::placeholder {
+            color: #b8b8b8;
+            font-weight: 400;
+        }
+
+        .login-input-group.input-error input,
+        .login-input-group.input-error select {
+            border-color: #e53e3e;
+        }
+
+        .login-error-msg {
+            color: #e53e3e;
+            font-size: 0.7rem;
+            margin-top: 3px;
+            display: none;
+            padding-left: 0.5rem;
+            font-weight: 500;
+        }
+        .login-error-msg.show {
+            display: block;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        .login-row-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 4px 0 0;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .login-remember {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: #0a0e1a;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .login-remember input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+            accent-color: #ff6b00;
+            border-radius: 4px;
+            border: 2px solid #d5dce4;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .login-remember input[type="checkbox"]:hover {
+            transform: scale(1.05);
+        }
+
+        .login-forgot-link {
+            color: #ff6b00;
+            font-size: 0.8rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .login-forgot-link:hover {
+            color: #e05a00;
+            text-decoration: underline;
+        }
+
+        .login-btn-wrapper {
+            display: flex;
+            justify-content: stretch;
+            margin-bottom: 16px;
+            width: 100%;
+        }
+
+        .login-submit-btn {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            background: linear-gradient(135deg, #ff6b00, #e05a00);
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .login-submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .login-submit-btn:hover {
+            background: linear-gradient(135deg, #ff8833, #ff6b00);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.4);
+        }
+
+        .login-submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .login-submit-btn i {
+            margin-right: 8px;
+        }
+
+        .login-signup-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6a7a8a;
+        }
+
+        .login-signup-text a {
+            color: #ff6b00;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .login-signup-text a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b00;
+            transition: width 0.3s ease;
+        }
+
+        .login-signup-text a:hover::after {
+            width: 100%;
+        }
+
+        .login-signup-text a:hover {
+            color: #e05a00;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 769px) {
+            .main-wrapper {
+                padding: 20px 24px;
+                min-height: calc(100vh - 280px);
+            }
+
+            .login-form-card {
+                min-height: 480px;
+                /* max-height removed */
+            }
+
+            .login-form-content {
+                padding: 2rem 2.2rem;
+            }
+
+            .login-form-visual {
+                padding: 1.8rem;
+            }
+
+            .login-form-visual .visual-content img {
+                max-width: 160px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-wrapper {
+                padding: 16px;
+                min-height: auto;
+            }
+
+            .login-form-wrapper {
+                padding: 0;
+            }
+
+            .login-form-card {
+                flex-direction: column;
+                max-width: 440px;
+                margin: 0 auto;
+                border-radius: 16px;
+                min-height: auto;
+                overflow: visible;
+            }
+
+            .login-form-visual {
+                display: flex !important;
+                flex: none;
+                padding: 1.5rem;
+                min-height: 180px;
+                max-height: 220px;
+                width: 100%;
+                border-radius: 16px 16px 0 0;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .login-form-visual::after {
+                width: 120px;
+                height: 120px;
+            }
+
+            .login-form-visual .visual-content img {
+                max-width: 100px;
+                animation: floatImageMobile 3s ease-in-out infinite;
+            }
+
+            @keyframes floatImageMobile {
+                0%, 100% { transform: translateY(0px) scale(1); }
+                50% { transform: translateY(-8px) scale(1.02); }
+            }
+
+            .login-form-visual .visual-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .login-form-visual .visual-content p {
+                font-size: 0.8rem;
+            }
+
+            .login-form-content {
+                padding: 1.8rem 1.5rem;
+                text-align: center;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .login-badge {
+                align-self: center;
+            }
+
+            .login-google-row {
+                justify-content: center;
+            }
+
+            .login-divider {
+                justify-content: center;
+            }
+
+            .login-row-options {
+                justify-content: center;
+                gap: 0.6rem;
+                flex-wrap: wrap;
+            }
+
+            .login-form-heading {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+
+            .login-form-subhead {
+                font-size: 0.85rem;
+                text-align: center;
+                margin-bottom: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-wrapper {
+                padding: 12px 10px;
+            }
+
+            .login-form-card {
+                max-width: 100%;
+                border-radius: 12px;
+            }
+
+            .login-form-visual {
+                min-height: 150px;
+                max-height: 180px;
+                padding: 1rem;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .login-form-visual .visual-content img {
+                max-width: 80px;
+            }
+
+            .login-form-visual .visual-content h3 {
+                font-size: 1rem;
+            }
+
+            .login-form-visual .visual-content p {
+                font-size: 0.7rem;
+            }
+
+            .login-form-visual::after {
+                width: 100px;
+                height: 100px;
+            }
+
+            .login-form-content {
+                padding: 1.4rem 1rem;
+                border-radius: 0 0 12px 12px;
+            }
+
+            .login-form-heading {
+                font-size: 1.4rem;
+            }
+
+            .login-form-subhead {
+                font-size: 0.8rem;
+                margin-bottom: 16px;
+            }
+
+            .login-google-row {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+                margin-bottom: 14px;
+            }
+
+            .login-google-icon {
+                width: 1.4rem;
+                height: 1.4rem;
+            }
+
+            .login-input-group input,
+            .login-input-group select {
+                padding: 0.55rem 0.6rem 0.55rem 2.2rem;
+                font-size: 0.8rem;
+                border-radius: 8px;
+            }
+
+            .login-input-group i {
+                left: 10px;
+                font-size: 0.8rem;
+            }
+
+            .login-row-options {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 0.2rem;
+                margin: 2px 0 0;
+            }
+
+            .login-remember, .login-forgot-link {
+                font-size: 0.75rem;
+            }
+
+            .login-submit-btn {
+                padding: 0.6rem 0.6rem;
+                font-size: 0.85rem;
+                border-radius: 8px;
+            }
+
+            .login-divider {
+                margin: 0px 0 14px;
+            }
+
+            .login-divider span {
+                font-size: 0.6rem;
+            }
+
+            .login-badge {
+                font-size: 0.6rem;
+                padding: 3px 10px;
+                margin-bottom: 12px;
+            }
+
+            .login-signup-text {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f0f4f8; }
+        ::-webkit-scrollbar-thumb { background: #ff6b00; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e05a00; }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER PLACEHOLDER ===== -->
+    <div id="header-placeholder"></div>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <div class="main-wrapper">
+        <div class="login-form-wrapper">
+            <div class="login-form-card">
+
+                <!-- Left Column - Visual with Image -->
+                <div class="login-form-visual">
+                    <div class="visual-content">
+                        <img src="car9.webp" alt="Car Parts Store" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fas fa-car" style="display:none; font-size:60px; color:#ff6b00; animation:floatImage 4s ease-in-out infinite;"></i>
+                        <h3>Car<span>Parts</span></h3>
+                        <p>Premium Auto Parts Since 2026</p>
+                    </div>
+                </div>
+
+                <!-- Right Column - Form -->
+                <div class="login-form-content">
+                    <!-- Badge -->
+                    <div class="login-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        Secure Login
+                    </div>
+
+                    <h1 class="login-form-heading">Welcome <span>Back</span></h1>
+                    <p class="login-form-subhead">
+                        <i class="fas fa-arrow-right"></i> Sign in to access your account &amp; track orders
+                    </p>
+
+                    <!-- Google Login -->
+                    <div class="login-google-row" id="googleLoginBtn">
+                        <span class="login-google-icon">
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />
+                                <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z" />
+                                <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" />
+                                <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
+                            </svg>
+                        </span>
+                        <span>Continue with Google</span>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="login-divider">
+                        <hr />
+                        <span>Or</span>
+                        <hr />
+                    </div>
+
+                    <!-- ===== ROLE SELECT + ERROR ===== -->
+                    <div class="login-field">
+                        <div class="login-input-group" id="roleGroup">
+                            <i class="fas fa-user-tag"></i>
+                            <select id="loginRoleSelect">
+                                <option value="">Select your role</option>
+                                <option value="customer">Customer Dashboard</option>
+                                <option value="admin">Admin Dashboard</option>
+                            </select>
+                        </div>
+                        <div class="login-error-msg" id="loginRoleError">Please select your role.</div>
+                    </div>
+
+                    <!-- ===== EMAIL + ERROR ===== -->
+                    <div class="login-field">
+                        <div class="login-input-group" id="emailGroup">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="loginEmail" placeholder="Enter your email address" required />
+                        </div>
+                        <div class="login-error-msg" id="loginEmailError">Please enter a valid email address.</div>
+                    </div>
+
+                    <!-- ===== PASSWORD + ERROR ===== -->
+                    <div class="login-field">
+                        <div class="login-input-group" id="passwordGroup">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="Enter your password" required />
+                        </div>
+                        <div class="login-error-msg" id="loginPasswordError">Password must be at least 8 characters with 1 uppercase, 1 number &amp; 1 special character.</div>
+                    </div>
+
+                    <!-- ===== REMEMBER ME + ERROR ===== -->
+                    <div class="login-field">
+                        <div class="login-row-options">
+                            <label class="login-remember">
+                                <input type="checkbox" id="loginRememberMe" /> Remember Me
+                            </label>
+                            <a href="404.html" class="login-forgot-link">Forgot Password?</a>
+                        </div>
+                        <div class="login-error-msg" id="loginCheckboxError">Please check "Remember Me" to continue.</div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="login-btn-wrapper">
+                        <button class="login-submit-btn" id="loginSubmitBtn">
+                            <i class="fas fa-arrow-right"></i> Log In
+                        </button>
+                    </div>
+
+                    <!-- Signup Link -->
+                    <div class="login-signup-text">
+                        Not a member yet? <a href="signup.html" id="loginSignupLink">Create an account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER PLACEHOLDER ===== -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // =========================================
+        // HEADER & FOOTER LOADER
+        // =========================================
+        (function loadHeaderFooter() {
+            // Load Header
+            fetch('header.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Header not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    initHeader();
+                })
+                .catch(error => {
+                    console.error('Error loading header:', error);
+                    document.getElementById('header-placeholder').innerHTML = 
+                        '<div style="background:#0a0e1a; color:#ff6b00; padding:15px; text-align:center; font-weight:500; border-bottom:3px solid #ff6b00;">⚠️ Header failed to load</div>';
+                });
+
+            // Load Footer
+            fetch('footer.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Footer not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                    initFooter();
+                })
+                .catch(error => {
+                    console.error('Error loading footer:', error);
+                    document.getElementById('footer-placeholder').innerHTML = 
+                        '<div style="background:#0a0e1a; color:#a8b8d0; padding:20px; text-align:center; border-top:3px solid #ff6b00;">⚠️ Footer failed to load</div>';
+                });
+        })();
+
+        // =========================================
+        // HEADER INITIALIZATION
+        // =========================================
+        function initHeader() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (hamburger && mobileMenu) {
+                function toggleMenu() {
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+                    const expanded = mobileMenu.classList.contains('active');
+                    hamburger.setAttribute('aria-expanded', expanded);
+                }
+
+                function closeMenu() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+
+                hamburger.addEventListener('click', toggleMenu);
+
+                document.addEventListener('click', function(e) {
+                    if (mobileMenu.classList.contains('active')) {
+                        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                            closeMenu();
+                        }
+                    }
+                });
+
+                window.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') closeMenu();
+                });
+
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) closeMenu();
+                });
+
+                document.querySelectorAll('.mobile-nav a, .mobile-actions a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        closeMenu();
+                    });
+                });
+            }
+
+            document.querySelectorAll('.nav-links a, .btn-outline, .btn-primary').forEach(link => {
+                if (link.getAttribute('href') === 'login.html') {
+                    link.classList.add('active');
+                }
+            });
+
+            console.log('✅ Header initialized');
+        }
+
+        // =========================================
+        // FOOTER INITIALIZATION
+        // =========================================
+        function initFooter() {
+            console.log('✅ Footer initialized');
+        }
+
+        // =========================================
+        // LOGIN FORM VALIDATION
+        // =========================================
+        (function() {
+            const roleSelect = document.getElementById('loginRoleSelect');
+            const emailInput = document.getElementById('loginEmail');
+            const passwordInput = document.getElementById('loginPassword');
+            const rememberCheck = document.getElementById('loginRememberMe');
+            const roleError = document.getElementById('loginRoleError');
+            const emailError = document.getElementById('loginEmailError');
+            const passwordError = document.getElementById('loginPasswordError');
+            const checkboxError = document.getElementById('loginCheckboxError');
+            const loginBtn = document.getElementById('loginSubmitBtn');
+            const googleBtn = document.getElementById('googleLoginBtn');
+
+            roleSelect.addEventListener('change', function() {
+                if (this.value !== '') {
+                    roleError.classList.remove('show');
+                    document.getElementById('roleGroup').classList.remove('input-error');
+                }
+            });
+
+            emailInput.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    emailError.classList.remove('show');
+                    document.getElementById('emailGroup').classList.remove('input-error');
+                }
+            });
+
+            passwordInput.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    passwordError.classList.remove('show');
+                    document.getElementById('passwordGroup').classList.remove('input-error');
+                }
+            });
+
+            rememberCheck.addEventListener('change', function() {
+                checkboxError.classList.remove('show');
+            });
+
+            function validateEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            function validatePassword(pwd) {
+                const minLength = pwd.length >= 8;
+                const hasUpper = /[A-Z]/.test(pwd);
+                const hasNumber = /[0-9]/.test(pwd);
+                const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};:'"\\|,.<>\/?]/.test(pwd);
+                return minLength && hasUpper && hasNumber && hasSpecial;
+            }
+
+            loginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                let isValid = true;
+
+                const role = roleSelect.value;
+                if (!role) {
+                    roleError.textContent = 'Please select your role (Customer or Admin).';
+                    roleError.classList.add('show');
+                    document.getElementById('roleGroup').classList.add('input-error');
+                    isValid = false;
+                } else {
+                    roleError.classList.remove('show');
+                    document.getElementById('roleGroup').classList.remove('input-error');
+                }
+
+                const email = emailInput.value.trim();
+                if (!email || !validateEmail(email)) {
+                    emailError.textContent = 'Please enter a valid email address.';
+                    emailError.classList.add('show');
+                    document.getElementById('emailGroup').classList.add('input-error');
+                    isValid = false;
+                } else {
+                    emailError.classList.remove('show');
+                    document.getElementById('emailGroup').classList.remove('input-error');
+                }
+
+                const pwd = passwordInput.value.trim();
+                if (!pwd || !validatePassword(pwd)) {
+                    passwordError.textContent = 'Password must be at least 8 characters with 1 uppercase, 1 number & 1 special character.';
+                    passwordError.classList.add('show');
+                    document.getElementById('passwordGroup').classList.add('input-error');
+                    isValid = false;
+                } else {
+                    passwordError.classList.remove('show');
+                    document.getElementById('passwordGroup').classList.remove('input-error');
+                }
+
+                if (!rememberCheck.checked) {
+                    checkboxError.textContent = 'Please check "Remember Me" to continue.';
+                    checkboxError.classList.add('show');
+                    isValid = false;
+                } else {
+                    checkboxError.classList.remove('show');
+                }
+
+                if (isValid) {
+                    const selectedRole = roleSelect.value;
+                    
+                    if (selectedRole === 'admin') {
+                        window.location.href = 'admin-dashboard.html';
+                    } else if (selectedRole === 'customer') {
+                        window.location.href = 'customer-dashboard.html';
+                    } else {
+                        window.location.href = 'dashboard.html';
+                    }
+                }
+            });
+
+            googleBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = '404.html';
+            });
+
+            document.querySelectorAll('.login-input-group input, .login-input-group select').forEach(el => {
+                el.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        loginBtn.click();
+                    }
+                });
+            });
+
+            document.getElementById('loginSignupLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'signup.html';
+            });
+
+            console.log('✅ Login page ready!');
+            console.log('🏎️ Car Parts Store - Racing Orange & Dark Navy');
+            console.log('🔧 Bug fix: Every error message (Role, Email, Password, Remember Me) is wrapped with its own field');
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>Car Parts Store - Exterior Parts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 100px;
+        }
+
+        /* ===== HEADER PLACEHOLDER ===== */
+        #header-placeholder {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        /* ===== FOOTER PLACEHOLDER ===== */
+        #footer-placeholder {
+            width: 100%;
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.85), rgba(10, 14, 26, 0.7)), url('cp05.webp');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 24px;
+            text-align: center;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content h1 span {
+            color: #ff6b00;
+        }
+
+        .hero-content p {
+            color: #c8d0dc;
+            font-size: 1.2rem;
+            margin-top: 16px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 107, 0, 0.2);
+            color: #ff6b00;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            transition: 0.3s;
+        }
+
+        .hero-badge:hover {
+            background: rgba(255, 107, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-wrapper {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+            width: 100%;
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0a0e1a;
+        }
+
+        .section-title h2 span {
+            color: #ff6b00;
+        }
+
+        .section-title p {
+            color: #6a7a8a;
+            font-size: 1rem;
+            margin-top: 8px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== PRODUCT GRID ===== */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 12px rgba(10, 14, 26, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b00, #ff8833, #ff6b00);
+            transition: left 0.5s ease;
+        }
+
+        .product-card:hover::before {
+            left: 0;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #ff6b00;
+            box-shadow: 0 20px 50px rgba(255, 107, 0, 0.15);
+        }
+
+        .product-card .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            transition: transform 0.5s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card .product-img-sm {
+            height: 150px;
+        }
+
+        .product-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0a0e1a;
+            margin-bottom: 6px;
+            transition: color 0.3s;
+        }
+
+        .product-card:hover h3 {
+            color: #ff6b00;
+        }
+
+        .product-card p {
+            color: #6a7a8a;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 6px;
+        }
+
+        .product-card .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ff6b00;
+            margin-bottom: 14px;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .price {
+            transform: scale(1.05);
+        }
+
+        .product-card .old-price {
+            font-size: 0.9rem;
+            color: #b8b8b8;
+            text-decoration: line-through;
+            margin-right: 8px;
+            font-weight: 400;
+        }
+
+        .product-card .rating {
+            color: #f5a623;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+
+        .product-card .badge {
+            display: inline-block;
+            background: #ff6b00;
+            color: #0a0e1a;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 3px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
+
+        .product-card .badge.sale {
+            background: #e53e3e;
+            color: #ffffff;
+        }
+
+        .product-card .badge.new {
+            background: #2e7d32;
+            color: #ffffff;
+        }
+
+        .product-card:hover .badge {
+            transform: scale(1.1);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            background: #ff6b00;
+            border: 2px solid #ff6b00;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #0a0e1a;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn i {
+            color: #0a0e1a;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #ff8833;
+            border-color: #ff8833;
+            color: #0a0e1a;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.35);
+        }
+
+        .btn:hover i {
+            color: #0a0e1a;
+            transform: translateX(4px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #ff6b00;
+            color: #ff6b00;
+        }
+
+        .btn-outline i {
+            color: #ff6b00;
+        }
+
+        .btn-outline:hover {
+            background: #ff6b00;
+            color: #0a0e1a;
+            border-color: #ff6b00;
+        }
+
+        .btn-outline:hover i {
+            color: #0a0e1a;
+        }
+
+        .btn-white {
+            background: #ffffff;
+            border: 2px solid #ffffff;
+            color: #0a0e1a;
+        }
+
+        .btn-white i {
+            color: #0a0e1a;
+        }
+
+        .btn-white:hover {
+            background: #f0f0f0;
+            border-color: #f0f0f0;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-center {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-center .btn {
+            display: inline-flex;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 50px 40px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 50px;
+            transition: box-shadow 0.3s;
+        }
+
+        .features-section:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            cursor: default;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 107, 0, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .feature-item .icon {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 12px;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .feature-item:hover .icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .feature-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0a0e1a;
+            transition: color 0.3s;
+        }
+
+        .feature-item:hover h4 {
+            color: #ff6b00;
+        }
+
+        .feature-item p {
+            font-size: 0.8rem;
+            color: #6a7a8a;
+            margin-top: 4px;
+        }
+
+        /* ===== CATEGORY BANNER ===== */
+        .category-banner {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.08), rgba(10, 14, 26, 0.04));
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 107, 0, 0.15);
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.03), transparent 70%);
+            transition: all 0.6s ease;
+        }
+
+        .category-banner:hover::before {
+            top: -30%;
+            right: -30%;
+            transform: scale(1.5);
+        }
+
+        .category-banner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.1);
+        }
+
+        .category-banner .content {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-banner .content h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0a0e1a;
+            transition: color 0.3s;
+        }
+
+        .category-banner:hover .content h2 span {
+            color: #ff8833;
+        }
+
+        .category-banner .content h2 span {
+            color: #ff6b00;
+            transition: color 0.3s;
+        }
+
+        .category-banner .content p {
+            color: #6a7a8a;
+            font-size: 1rem;
+            margin-top: 6px;
+            line-height: 1.8;
+        }
+
+        .category-banner .content .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px 20px;
+            margin: 12px 0;
+        }
+
+        .category-banner .content .feature-list li {
+            list-style: none;
+            color: #0a0e1a;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+
+        .category-banner .content .feature-list li:hover {
+            background: rgba(255, 107, 0, 0.08);
+            transform: translateX(5px);
+        }
+
+        .category-banner .content .feature-list li i {
+            color: #ff6b00;
+            font-size: 0.8rem;
+        }
+
+        .category-banner .img-wrapper {
+            width: 280px;
+            height: 200px;
+            border-radius: 16px;
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-banner:hover .img-wrapper {
+            transform: scale(1.03);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-banner .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .category-banner:hover .img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 50px;
+            transition: box-shadow 0.3s;
+        }
+
+        .testimonials-section:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-item {
+            padding: 24px;
+            background: #f8f9fa;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-8px);
+            border-color: #ff6b00;
+            box-shadow: 0 12px 35px rgba(255, 107, 0, 0.1);
+            background: #ffffff;
+        }
+
+        .testimonial-item .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+            border: 3px solid transparent;
+            transition: all 0.4s;
+        }
+
+        .testimonial-item:hover .avatar {
+            border-color: #ff6b00;
+            transform: scale(1.05);
+        }
+
+        .testimonial-item .stars {
+            color: #f5a623;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .testimonial-item blockquote {
+            color: #0a0e1a;
+            font-size: 0.9rem;
+            font-style: italic;
+            line-height: 1.6;
+            transition: color 0.3s;
+        }
+
+        .testimonial-item:hover blockquote {
+            color: #0a0e1a;
+        }
+
+        .testimonial-item .name {
+            font-weight: 700;
+            color: #0a0e1a;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+
+        .testimonial-item:hover .name {
+            color: #ff6b00;
+        }
+
+        .testimonial-item .role {
+            font-size: 0.75rem;
+            color: #6a7a8a;
+        }
+
+        /* ===== BRAND STRIP ===== */
+        .brand-strip {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 40px;
+            border: 1px solid rgba(10, 14, 26, 0.06);
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            transition: all 0.3s;
+        }
+
+        .brand-strip:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .brand-strip .brand-item {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0a0e1a;
+            opacity: 0.6;
+            transition: all 0.4s ease;
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: default;
+        }
+
+        .brand-strip .brand-item:hover {
+            opacity: 1;
+            color: #ff6b00;
+            transform: translateY(-5px) scale(1.05);
+            background: rgba(255, 107, 0, 0.05);
+        }
+
+        .brand-strip .brand-item i {
+            font-size: 2rem;
+            color: #ff6b00;
+            display: block;
+            margin-bottom: 4px;
+            transition: transform 0.3s;
+        }
+
+        .brand-strip .brand-item:hover i {
+            transform: rotate(-10deg) scale(1.1);
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter-section {
+            background: linear-gradient(135deg, #0a0e1a, #1a2a40);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 107, 0, 0.15);
+            margin-bottom: 0;
+            transition: box-shadow 0.3s;
+        }
+
+        .newsletter-section:hover {
+            box-shadow: 0 8px 40px rgba(255, 107, 0, 0.05);
+        }
+
+        .newsletter-section h2 {
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .newsletter-section h2 span {
+            color: #ff6b00;
+            transition: color 0.3s;
+        }
+
+        .newsletter-section:hover h2 span {
+            color: #ff8833;
+        }
+
+        .newsletter-section p {
+            color: #a8b8d0;
+            font-size: 1rem;
+            margin-top: 8px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 20px auto 0;
+            gap: 12px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #6a7a8a;
+        }
+
+        .newsletter-form input:focus {
+            border-color: #ff6b00;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.1);
+            transform: scale(1.02);
+        }
+
+        .newsletter-form .btn {
+            flex-shrink: 0;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1100px) {
+            body {
+                padding-top: 160px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .brand-strip {
+                justify-content: center;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .category-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .category-banner .content .feature-list {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+            .category-banner .img-wrapper {
+                width: 100%;
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 180px;
+            }
+            .hero-section {
+                padding: 50px 20px;
+                min-height: 300px;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .product-card .product-img {
+                height: 150px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-section {
+                padding: 30px 20px;
+            }
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+            .newsletter-section {
+                padding: 30px 20px;
+            }
+            .brand-strip {
+                padding: 20px;
+                gap: 12px;
+            }
+            .brand-strip .brand-item {
+                font-size: 1rem;
+                flex: 1 1 45%;
+            }
+            .brand-strip .brand-item i {
+                font-size: 1.5rem;
+            }
+            .category-banner .content .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 200px;
+            }
+            .main-wrapper {
+                padding: 20px 12px 40px;
+            }
+            .hero-content h1 {
+                font-size: 1.6rem;
+            }
+            .hero-section {
+                padding: 40px 16px;
+                min-height: 250px;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .product-card .product-img {
+                height: 180px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-section {
+                padding: 24px 16px;
+            }
+            .section-title h2 {
+                font-size: 1.4rem;
+            }
+            .testimonials-section {
+                padding: 20px;
+            }
+            .category-banner {
+                padding: 20px;
+            }
+            .category-banner .content h2 {
+                font-size: 1.3rem;
+            }
+            .newsletter-section h2 {
+                font-size: 1.4rem;
+            }
+            .newsletter-form input {
+                padding: 10px 14px;
+                font-size: 0.8rem;
+            }
+            .btn {
+                padding: 8px 20px;
+                font-size: 0.75rem;
+            }
+            .brand-strip .brand-item {
+                font-size: 0.85rem;
+                flex: 1 1 30%;
+            }
+            .brand-strip .brand-item i {
+                font-size: 1.3rem;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0f2f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff6b00;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e05a00;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER PLACEHOLDER ===== -->
+    <div id="header-placeholder"></div>
+
+    <!-- ===== SECTION 1: HERO ===== -->
+    <section class="hero-section" data-aos="fade-in" data-aos-duration="1000">
+        <div class="hero-content">
+            <div class="hero-badge" data-aos="fade-down" data-aos-delay="200">
+                <i class="fas fa-car"></i> Premium Exterior Parts
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="300">Upgrade Your <span>Vehicle's Exterior</span></h1>
+            <p data-aos="fade-up" data-aos-delay="400">From headlights to body kits, find the perfect exterior parts to make your car stand out on the road.</p>
+        </div>
+    </section>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <div class="main-wrapper">
+
+        <!-- ===== SECTION 2: FEATURES ===== -->
+        <div class="features-section" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Why Choose <span>Our Exterior Parts</span></h2>
+                <p>Premium quality parts designed to enhance your vehicle's appearance and performance</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Premium Quality</h4>
+                    <p>OEM-grade materials</p>
+                </div>
+                <div class="feature-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="icon"><i class="fas fa-paint-brush"></i></div>
+                    <h4>Perfect Finish</h4>
+                    <p>Factory-matched colors</p>
+                </div>
+                <div class="feature-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Easy Installation</h4>
+                    <p>Plug-and-play design</p>
+                </div>
+                <div class="feature-item" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="icon"><i class="fas fa-trophy"></i></div>
+                    <h4>Warranty Included</h4>
+                    <p>2-year warranty</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 3: HEADLIGHTS & LIGHTING ===== -->
+        <div class="section-title" data-aos="fade-up">
+            <h2>Headlights & <span>Lighting</span></h2>
+            <p>Premium lighting solutions for better visibility and style</p>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="cp07.webp" alt="LED Headlights" class="product-img">
+                <span class="badge new">New</span>
+                <h3>LED Headlight Assembly</h3>
+                <p>Premium LED headlights with DRL</p>
+                <div class="price">$299.99</div>
+                <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.8</div>
+                <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+
+            <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="cp08.webp" alt="Fog Lights" class="product-img">
+                <span class="badge sale">Sale</span>
+                <h3>LED Fog Light Kit</h3>
+                <p>Bright fog lights for all weather</p>
+                <div class="price"><span class="old-price">$149.99</span> $119.99</div>
+                <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0</div>
+                <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+
+            <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="cp07.webp" alt="Tail Lights" class="product-img">
+                <span class="badge">Popular</span>
+                <h3>LED Tail Light Assembly</h3>
+                <p>Sequential LED tail lights</p>
+                <div class="price">$249.99</div>
+                <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0</div>
+                <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 4: CATEGORY BANNER 1 - LIGHTING ===== -->
+        <div class="category-banner" data-aos="fade-up">
+            <div class="content">
+                <h2>Complete <span>Lighting</span> Solutions</h2>
+                <p>Upgrade your vehicle's lighting system with our premium collection of LED headlights, fog lights, and tail light assemblies. All parts are D.O.T. approved and come with a 2-year warranty.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> LED Headlights with DRL</li>
+                    <li><i class="fas fa-check-circle"></i> Fog Lights for All Weather</li>
+                    <li><i class="fas fa-check-circle"></i> Sequential LED Tail Lights</li>
+                    <li><i class="fas fa-check-circle"></i> D.O.T. Approved</li>
+                    <li><i class="fas fa-check-circle"></i> 2-Year Warranty</li>
+                    <li><i class="fas fa-check-circle"></i> Easy Plug-and-Play Installation</li>
+                </ul>
+                <br>
+                <a href="404.html" class="btn"><i class="fas fa-arrow-right"></i> Shop All Lighting</a>
+            </div>
+            <div class="img-wrapper">
+                <img src="cps6.webp" alt="Lighting">
+            </div>
+        </div>
+
+        <!-- ===== SECTION 5: BODY KITS & BUMPERS ===== -->
+        <div class="section-title" data-aos="fade-up">
+            <h2>Body Kits & <span>Bumpers</span></h2>
+            <p>Transform your vehicle's appearance with our premium body kits</p>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="cps5.webp" alt="Front Bumper" class="product-img product-img-sm">
+                <span class="badge new">New</span>
+                <h3>Front Bumper Kit</h3>
+                <p>Aggressive design, premium fit</p>
+                <div class="price">$499.99</div>
+                <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0</div>
+                <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+
+            <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="cps4.webp" alt="Rear Diffuser" class="product-img product-img-sm">
+                <span class="badge sale">Sale</span>
+                <h3>Rear Diffuser Kit</h3>
+                <p>Carbon fiber rear diffuser</p>
+                <div class="price"><span class="old-price">$399.99</span> $329.99</div>
+                <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.7</div>
+                <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+
+            <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="cps3.webp" alt="Side Skirts" class="product-img product-img-sm">
+                <h3>Side Skirts Set</h3>
+                <p>Sleek side skirt design</p>
+                <div class="price">$249.99</div>
+                <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0</div>
+                <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 6: BRAND STRIP ===== -->
+        <div class="brand-strip" data-aos="fade-up">
+            <div class="brand-item"><i class="fas fa-check-circle"></i> OEM Certified</div>
+            <div class="brand-item"><i class="fas fa-truck"></i> Free Shipping</div>
+            <div class="brand-item"><i class="fas fa-undo"></i> Easy Returns</div>
+            <div class="brand-item"><i class="fas fa-shield-alt"></i> 2-Year Warranty</div>
+        </div>
+
+        <!-- ===== SECTION 7: WHEELS & RIMS ===== -->
+        <div class="section-title" data-aos="fade-up">
+            <h2>Wheels & <span>Rims</span></h2>
+            <p>Premium wheels to complete your exterior look</p>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="cps2.webp" alt="Sport Wheels" class="product-img product-img-sm">
+                <span class="badge">Popular</span>
+                <h3>Sport Alloy Wheels</h3>
+                <p>18" lightweight alloy wheels</p>
+                <div class="price">$899.99</div>
+                <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0</div>
+                <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+
+            <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="cps1.webp" alt="Custom Rims" class="product-img product-img-sm">
+                <span class="badge new">New</span>
+                <h3>Custom Chrome Rims</h3>
+                <p>20" chrome finish rims</p>
+                <div class="price">$1,199.99</div>
+                <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0</div>
+                <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+
+            <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="cp01.webp" alt="Wheel Covers" class="product-img product-img-sm">
+                <h3>Wheel Cover Set</h3>
+                <p>Premium wheel covers, set of 4</p>
+                <div class="price">$149.99</div>
+                <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.6</div>
+                <a href="404.html" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 8: CATEGORY BANNER 2 - WHEELS ===== -->
+        <div class="category-banner" data-aos="fade-up">
+            <div class="content">
+                <h2>Custom <span>Wheels</span> Collection</h2>
+                <p>Choose from our premium selection of alloy wheels and custom rims. Available in various sizes and finishes to match your vehicle's style.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Alloy Wheels 18"-22"</li>
+                    <li><i class="fas fa-check-circle"></i> Chrome, Matte, Gloss Finishes</li>
+                    <li><i class="fas fa-check-circle"></i> Lightweight Performance</li>
+                    <li><i class="fas fa-check-circle"></i> OEM & Aftermarket Fitment</li>
+                    <li><i class="fas fa-check-circle"></i> Lifetime Structural Warranty</li>
+                    <li><i class="fas fa-check-circle"></i> Free Mount & Balance</li>
+                </ul>
+                <br>
+                <a href="404.html" class="btn"><i class="fas fa-arrow-right"></i> Shop All Wheels</a>
+            </div>
+            <div class="img-wrapper">
+                <img src="cp02.webp" alt="Wheels">
+            </div>
+        </div>
+
+        <!-- ===== SECTION 9: TESTIMONIALS ===== -->
+        <div class="testimonials-section" data-aos="fade-up">
+            <div class="section-title">
+                <h2>What Our <span>Customers Say</span></h2>
+                <p>Real reviews from satisfied customers</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-item" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="cp03.webp" alt="Customer" class="avatar">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"The LED headlights are amazing! Huge difference at night. Easy to install and great quality."</blockquote>
+                    <div class="name">Mike Johnson</div>
+                    <div class="role">Mustang GT Owner</div>
+                </div>
+                <div class="testimonial-item" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="cp04.webp" alt="Customer" class="avatar">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"The body kit looks incredible! Perfect fit and paint match. Highly recommend this store."</blockquote>
+                    <div class="name">Sarah Chen</div>
+                    <div class="role">BMW Enthusiast</div>
+                </div>
+                <div class="testimonial-item" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="cp05.webp" alt="Customer" class="avatar">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Fast shipping and great customer service. The wheels transformed my car completely!"</blockquote>
+                    <div class="name">David Park</div>
+                    <div class="role">Car Enthusiast</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 10: NEWSLETTER ===== -->
+        <div class="newsletter-section" data-aos="fade-up">
+            <h2>Subscribe to Our <span>Newsletter</span></h2>
+            <p>Stay updated with our latest exterior parts, exclusive offers, and car care tips.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); window.location.href='404.html';">
+                <input type="email" placeholder="Enter your email address" required />
+                <button type="submit" class="btn btn-white"><i class="fas fa-paper-plane"></i> Subscribe</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- ===== FOOTER PLACEHOLDER ===== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- ===== AOS SCRIPTS ===== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+    <script>
+        // =========================================
+        // HEADER & FOOTER LOADER
+        // =========================================
+        (function loadHeaderFooter() {
+            // Load Header
+            fetch('header.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Header not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    initHeader();
+                })
+                .catch(error => {
+                    console.error('Error loading header:', error);
+                    document.getElementById('header-placeholder').innerHTML =
+                        '<div style="background:#0a0e1a; color:#ff6b00; padding:15px; text-align:center; font-weight:500; border-bottom:3px solid #ff6b00;">⚠️ Header failed to load</div>';
+                });
+
+            // Load Footer
+            fetch('footer.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Footer not found');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                    initFooter();
+                })
+                .catch(error => {
+                    console.error('Error loading footer:', error);
+                    document.getElementById('footer-placeholder').innerHTML =
+                        '<div style="background:#0a0e1a; color:#a8b8d0; padding:20px; text-align:center; border-top:3px solid #ff6b00;">⚠️ Footer failed to load</div>';
+                });
+        })();
+
+        // =========================================
+        // HEADER INITIALIZATION
+        // =========================================
+        function initHeader() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (hamburger && mobileMenu) {
+                function toggleMenu() {
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+                    const expanded = mobileMenu.classList.contains('active');
+                    hamburger.setAttribute('aria-expanded', expanded);
+                }
+
+                function closeMenu() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+
+                hamburger.addEventListener('click', toggleMenu);
+
+                document.addEventListener('click', function(e) {
+                    if (mobileMenu.classList.contains('active')) {
+                        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                            closeMenu();
+                        }
+                    }
+                });
+
+                window.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') closeMenu();
+                });
+
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) closeMenu();
+                });
+
+                document.querySelectorAll('.mobile-nav-link, .mobile-action-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        closeMenu();
+                    });
+                });
+            }
+
+            // Make sure Exterior link in header is active
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === 'exterior.html') {
+                    link.classList.add('active');
+                }
+            });
+
+            console.log('✅ Header initialized');
+        }
+
+        // =========================================
+        // FOOTER INITIALIZATION
+        // =========================================
+        function initFooter() {
+            console.log('✅ Footer initialized');
+        }
+
+        // =========================================
+        // AOS INITIALIZATION
+        // =========================================
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 80,
+            easing: 'ease-out-cubic'
+        });
+
+        console.log('🚗 Car Parts Store | Exterior Page Loaded');
+        console.log('🏎️ 10 sections with enhanced content & hover effects!');
+    </script>
+
+</body>
+</html>

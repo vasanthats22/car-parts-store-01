@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <title>Car Parts Store - 404 Page Not Found</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0e1a 0%, #141e30 50%, #1a2a40 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* ===== BACKGROUND ORANGE DUST ===== */
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, #ff6b00 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        /* ===== 404 CONTAINER ===== */
+        .error-container {
+            max-width: 460px;
+            width: 100%;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 35px 28px 28px;
+            text-align: center;
+            border: 2px solid #ff6b00;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 107, 0, 0.05);
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%,
+            100% {
+                text-shadow: 0 0 20px rgba(255, 107, 0, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 40px rgba(255, 107, 0, 0.4);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ===== 404 NUMBER ===== */
+        .error-number {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: #ff6b00;
+            line-height: 1;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 12px rgba(255, 107, 0, 0.2);
+            animation: float 3s ease-in-out infinite, glowPulse 3s ease-in-out infinite;
+        }
+
+        /* ===== ICON ===== */
+        .error-icon {
+            font-size: 2.2rem;
+            color: #a8b8d0;
+            display: block;
+            margin-top: 4px;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        /* ===== HEADING ===== */
+        .error-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 6px;
+            letter-spacing: -0.3px;
+            animation: slideInLeft 0.6s ease-out 0.2s both;
+        }
+
+        /* ===== DESCRIPTION ===== */
+        .error-description {
+            font-size: 0.9rem;
+            color: #a8b8d0;
+            opacity: 0.8;
+            margin-top: 8px;
+            line-height: 1.6;
+            animation: slideInRight 0.6s ease-out 0.3s both;
+        }
+
+        /* ===== DIVIDER ===== */
+        .divider {
+            width: 60px;
+            height: 2.5px;
+            background: linear-gradient(90deg, #ff6b00, #1a2a40, #ff6b00);
+            background-size: 200% auto;
+            margin: 16px auto;
+            border-radius: 4px;
+            animation: shimmer 3s linear infinite;
+        }
+
+        /* ===== BUTTONS ===== */
+        .button-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out 0.4s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.65rem 1.6rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn i {
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        /* ===== GO BACK BUTTON ===== */
+        .btn-go-back {
+            background: transparent;
+            border-color: rgba(255, 107, 0, 0.3);
+            color: #a8b8d0;
+            transition: all 0.3s ease;
+        }
+
+        .btn-go-back::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 107, 0, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-go-back:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-go-back:hover {
+            background: rgba(255, 107, 0, 0.15);
+            border-color: #ff6b00;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        .btn-go-back:hover i {
+            transform: translateX(-4px);
+            color: #ff8833;
+        }
+
+        /* ===== BACK TO HOME BUTTON ===== */
+        .btn-home {
+            background: linear-gradient(135deg, #ff6b00, #e05a00);
+            border-color: #ff6b00;
+            color: #0a0e1a;
+            transition: all 0.3s ease;
+        }
+
+        .btn-home::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-home:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-home:hover {
+            background: linear-gradient(135deg, #ff8833, #ff6b00);
+            border-color: #ff8833;
+            color: #0a0e1a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 24px rgba(255, 107, 0, 0.35);
+        }
+
+        .btn-home:hover i {
+            transform: translateX(4px);
+        }
+
+        /* ===== RIPPLE EFFECT ===== */
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* ===== RESPONSIVE ===== */
+
+        @media (max-width: 480px) {
+            .error-container {
+                padding: 28px 20px 22px;
+                border-radius: 22px;
+                max-width: 100%;
+            }
+
+            .error-number {
+                font-size: 3.5rem;
+            }
+
+            .error-icon {
+                font-size: 1.8rem;
+            }
+
+            .error-heading {
+                font-size: 1.3rem;
+            }
+
+            .error-description {
+                font-size: 0.8rem;
+                margin-top: 6px;
+            }
+
+            .divider {
+                width: 50px;
+                margin: 12px auto;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .error-container {
+                padding: 22px 16px 18px;
+                border-radius: 18px;
+            }
+
+            .error-number {
+                font-size: 2.8rem;
+            }
+
+            .error-heading {
+                font-size: 1.1rem;
+            }
+
+            .error-description {
+                font-size: 0.75rem;
+            }
+
+            .btn {
+                font-size: 0.75rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== 404 PAGE ====== -->
+    <div class="error-container">
+
+        <!-- 404 Number -->
+        <div class="error-number">404</div>
+
+        <!-- Icon -->
+        <i class="fas fa-tools error-icon"></i>
+
+        <!-- Heading -->
+        <h1 class="error-heading">Page Not Found</h1>
+
+        <!-- Description -->
+        <p class="error-description">
+            Oops! The page you're looking for seems to have vanished.
+            Let's get you back on track.
+        </p>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+            <a href="javascript:history.back()" class="btn btn-go-back">
+                <i class="fas fa-arrow-left"></i> Go Back
+            </a>
+            <a href="index.html" class="btn btn-home">
+                Home <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
